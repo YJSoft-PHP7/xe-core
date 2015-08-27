@@ -662,7 +662,7 @@ class mcontent extends WidgetHandler
 	}
 }
 
-class mcontentItem extends Object
+class mcontentItem extends XEObject
 {
 
 	var $browser_title = null;

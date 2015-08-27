@@ -43,7 +43,7 @@ class NavigationTag
 
 	/**
 	 * constructor
-	 * @param object $xml_navigation
+	 * @param XEObject $xml_navigation
 	 * @return void
 	 */
 	function NavigationTag($xml_navigation)

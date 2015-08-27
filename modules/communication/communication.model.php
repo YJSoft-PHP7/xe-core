@@ -20,7 +20,7 @@ class communicationModel extends communication
 
 	/**
 	 * get the configuration
-	 * @return object config of communication module
+	 * @return XEObject config of communication module
 	 */
 	function getConfig()
 	{
@@ -101,7 +101,7 @@ class communicationModel extends communication
 
 	/**
 	  * @brief check member's grant
-	  * @param object $member_info
+	  * @param XEObject $member_info
 	  * @param array $arrGrant
 	  * @return boolean
 	  */
@@ -151,7 +151,7 @@ class communicationModel extends communication
 	 * get the message contents
 	 * @param int $message_srl
 	 * @param array $columnList
-	 * @return object message information
+	 * @return XEObject message information
 	 */
 	function getSelectedMessage($message_srl, $columnList = array())
 	{
@@ -204,7 +204,7 @@ class communicationModel extends communication
 	/**
 	 * get a new message
 	 * @param array $columnList
-	 * @return object message information
+	 * @return XEObject message information
 	 */
 	function getNewMessage($columnList = array())
 	{
@@ -232,7 +232,7 @@ class communicationModel extends communication
 	 * get a message list
 	 * @param string $message_type (R: Received Message, S: Sent Message, T: Archive)
 	 * @param array $columnList
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getMessages($message_type = "R", $columnList = array())
 	{
@@ -273,7 +273,7 @@ class communicationModel extends communication
 	 * Get a list of friends
 	 * @param int $friend_group_srl (default 0)
 	 * @param array $columnList
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getFriends($friend_group_srl = 0, $columnList = array())
 	{
@@ -315,7 +315,7 @@ class communicationModel extends communication
 	/**
 	 * Get a group of friends
 	 * @param int $friend_group_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getFriendGroupInfo($friend_group_srl)
 	{

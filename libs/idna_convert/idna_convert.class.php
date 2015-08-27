@@ -1034,7 +1034,7 @@ class idna_convert {
      *
      * @param array $params Set of paramaters
      *
-     * @return object idna_convert
+     * @return XEObject idna_convert
      * @access public
      */
     public function singleton($params = array())

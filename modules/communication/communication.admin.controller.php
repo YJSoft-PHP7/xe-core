@@ -19,7 +19,7 @@ class communicationAdminController extends communication
 
 	/**
 	 * save configurations of the communication module
-	 * @return void|Object (success : void, fail : Object)
+	 * @return void|XEObject (success : void, fail : Object)
 	 */
 	function procCommunicationAdminInsertConfig()
 	{

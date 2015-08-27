@@ -50,7 +50,7 @@ class TableTag
 
 	/**
 	 * Condition object
-	 * @var object
+	 * @var XEObject
 	 */
 	var $conditions;
 
@@ -63,7 +63,7 @@ class TableTag
 	/**
 	 * constructor
 	 * Initialises Table Tag properties
-	 * @param object $table XML <table> tag
+	 * @param XEObject $table XML <table> tag
 	 * @return void
 	 */
 	function TableTag($table)

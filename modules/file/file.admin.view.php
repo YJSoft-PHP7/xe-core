@@ -17,7 +17,7 @@ class fileAdminView extends file
 	/**
 	 * Display output list (for administrator)
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispFileAdminList()
 	{
@@ -210,7 +210,7 @@ class fileAdminView extends file
 	/**
 	 * Set attachment information (for administrator)
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispFileAdminConfig()
 	{

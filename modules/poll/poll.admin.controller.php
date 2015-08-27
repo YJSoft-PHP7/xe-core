@@ -134,7 +134,7 @@ class pollAdminController extends poll
 		}
 		$oDB->commit();
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -171,7 +171,7 @@ class pollAdminController extends poll
 
 		$oDB->commit();
 
-		return new Object();
+		return new XEObject();
 	}
 }
 /* End of file poll.admin.controller.php */

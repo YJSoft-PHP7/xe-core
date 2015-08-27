@@ -37,7 +37,7 @@ class addonAdminModel extends addon
 	/**
 	 * Get addon list for super admin
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getAddonListForSuperAdmin()
 	{
@@ -141,7 +141,7 @@ class addonAdminModel extends addon
 	 * @param string $addon Name to get information
 	 * @param int $site_srl Site srl
 	 * @param string $gtype site or global
-	 * @return object Returns a information
+	 * @return XEObject Returns a information
 	 */
 	function getAddonInfoXml($addon, $site_srl = 0, $gtype = 'site')
 	{

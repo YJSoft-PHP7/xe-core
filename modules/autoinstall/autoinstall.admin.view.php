@@ -83,9 +83,9 @@ class autoinstallAdminView extends autoinstall
 	 * )
 	 * </pre>
 	 *
-	 * @param object $item
-	 * @param object $targets
-	 * @return object
+	 * @param XEObject $item
+	 * @param XEObject $targets
+	 * @return XEObject
 	 */
 	function rearrange(&$item, &$targets)
 	{
@@ -163,9 +163,9 @@ class autoinstallAdminView extends autoinstall
 	 * )
 	 * </pre>
 	 *
-	 * @param object $items Recived data from server
-	 * @param object $packages Local data
-	 * @return object
+	 * @param XEObject $items Recived data from server
+	 * @param XEObject $packages Local data
+	 * @return XEObject
 	 */
 	function rearranges($items, $packages = null)
 	{
@@ -292,7 +292,7 @@ class autoinstallAdminView extends autoinstall
 	/**
 	 * Display installed packages
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispAutoinstallAdminInstalledPackages()
 	{
@@ -347,7 +347,7 @@ class autoinstallAdminView extends autoinstall
 	/**
 	 * Display install package
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispAutoinstallAdminInstall()
 	{
@@ -384,7 +384,7 @@ class autoinstallAdminView extends autoinstall
 	/**
 	 * Display package list
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispAutoinstallAdminIndex()
 	{
@@ -499,7 +499,7 @@ class autoinstallAdminView extends autoinstall
 	/**
 	 * Display uninstall package
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispAutoinstallAdminUninstall()
 	{

@@ -1131,22 +1131,22 @@ class ModuleHandler extends Handler
 	 * call a trigger
 	 * @param string $trigger_name trigger's name to call
 	 * @param string $called_position called position
-	 * @param object $obj an object as a parameter to trigger
-	 * @return Object
+	 * @param XEObject $obj an object as a parameter to trigger
+	 * @return XEObject
 	 * */
 	function triggerCall($trigger_name, $called_position, &$obj)
 	{
 		// skip if not installed
 		if(!Context::isInstalled())
 		{
-			return new Object();
+			return new XEObject();
 		}
 
 		$oModuleModel = getModel('module');
 		$triggers = $oModuleModel->getTriggers($trigger_name, $called_position);
 		if(!$triggers || count($triggers) < 1)
 		{
-			return new Object();
+			return new XEObject();
 		}
 		
 		//store before trigger call time
@@ -1189,7 +1189,7 @@ class ModuleHandler extends Handler
 			unset($oModule);
 		}
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**

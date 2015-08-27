@@ -152,7 +152,7 @@ class DB
 		}
 		if(!$db_type && Context::isInstalled())
 		{
-			return new Object(-1, 'msg_db_not_setted');
+			return new XEObject(-1, 'msg_db_not_setted');
 		}
 
 		if(!isset($GLOBALS['__DB__']))
@@ -165,7 +165,7 @@ class DB
 			$class_file = _XE_PATH_ . "classes/db/$class_name.class.php";
 			if(!file_exists($class_file))
 			{
-				return new Object(-1, 'msg_db_not_setted');
+				return new XEObject(-1, 'msg_db_not_setted');
 			}
 
 			// get a singletone instance of the database driver class
@@ -499,21 +499,21 @@ class DB
 
 	/**
 	 * Returns object of error info
-	 * @return object object of error
+	 * @return XEObject object of error
 	 */
 	function getError()
 	{
 		$this->errstr = Context::convertEncodingStr($this->errstr);
-		return new Object($this->errno, $this->errstr);
+		return new XEObject($this->errno, $this->errstr);
 	}
 
 	/**
 	 * Execute Query that result of the query xml file
 	 * This function finds xml file or cache file of $query_id, compiles it and then execute it
 	 * @param string $query_id query id (module.queryname)
-	 * @param array|object $args arguments for query
+	 * @param array|XEObject $args arguments for query
 	 * @param array $arg_columns column list. if you want get specific colums from executed result, add column list to $arg_columns
-	 * @return object result of query
+	 * @return XEObject result of query
 	 */
 	function executeQuery($query_id, $args = NULL, $arg_columns = NULL, $type = NULL)
 	{
@@ -521,7 +521,7 @@ class DB
 
 		if(!$query_id)
 		{
-			return new Object(-1, 'msg_invalid_queryid');
+			return new XEObject(-1, 'msg_invalid_queryid');
 		}
 		if(!$this->db_type)
 		{
@@ -556,14 +556,14 @@ class DB
 			if(!$target || !$module || !$id)
 			{
 				$this->actDBClassFinish();
-				return new Object(-1, 'msg_invalid_queryid');
+				return new XEObject(-1, 'msg_invalid_queryid');
 			}
 
 			$xml_file = sprintf('%s%s/%s/queries/%s.xml', _XE_PATH_, $target, $module, $id);
 			if(!file_exists($xml_file))
 			{
 				$this->actDBClassFinish();
-				return new Object(-1, 'msg_invalid_queryid');
+				return new XEObject(-1, 'msg_invalid_queryid');
 			}
 
 			// look for cache file
@@ -606,10 +606,10 @@ class DB
 	/**
 	 * Execute query and return the result
 	 * @param string $cache_file cache file of query
-	 * @param array|object $source_args arguments for query
+	 * @param array|XEObject $source_args arguments for query
 	 * @param string $query_id query id
 	 * @param array $arg_columns column list. if you want get specific colums from executed result, add column list to $arg_columns
-	 * @return object result of query
+	 * @return XEObject result of query
 	 */
 	function _executeQuery($cache_file, $source_args, $query_id, $arg_columns, $type)
 	{
@@ -619,7 +619,7 @@ class DB
 
 		if(!file_exists($cache_file))
 		{
-			return new Object(-1, 'msg_invalid_queryid');
+			return new XEObject(-1, 'msg_invalid_queryid');
 		}
 
 		if($source_args)
@@ -629,7 +629,7 @@ class DB
 
 		$output = include($cache_file);
 
-		if((is_a($output, 'Object') || is_subclass_of($output, 'Object')) && !$output->toBool())
+		if((is_a($output, 'XEObject') || is_subclass_of($output, 'XEObject')) && !$output->toBool())
 		{
 			return $output;
 		}
@@ -662,9 +662,9 @@ class DB
 		{
 			$output = $this->getError();
 		}
-		else if(!is_a($output, 'Object') && !is_subclass_of($output, 'Object'))
+		else if(!is_a($output, 'XEObject') && !is_subclass_of($output, 'XEObject'))
 		{
-			$output = new Object();
+			$output = new XEObject();
 		}
 		$output->add('_query', $this->query);
 		$output->add('_elapsed_time', sprintf("%0.5f", $this->elapsed_time));
@@ -818,7 +818,7 @@ class DB
 
 	/**
 	 * Return select query string
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param boolean $with_values
 	 * @return string
 	 */
@@ -827,14 +827,14 @@ class DB
 		$select = $query->getSelectString($with_values);
 		if($select == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 		$select = 'SELECT ' . $select;
 
 		$from = $query->getFromString($with_values);
 		if($from == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 		$from = ' FROM ' . $from;
 
@@ -912,7 +912,7 @@ class DB
 
 	/**
 	 * Return delete query string
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param boolean $with_values
 	 * @param boolean $with_priority
 	 * @return string
@@ -929,7 +929,7 @@ class DB
 		$from = $query->getFromString($with_values);
 		if($from == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 		$sql .= ' FROM ' . $from;
 
@@ -944,7 +944,7 @@ class DB
 
 	/**
 	 * Return update query string
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param boolean $with_values
 	 * @param boolean $with_priority
 	 * @return string
@@ -954,13 +954,13 @@ class DB
 		$columnsList = $query->getUpdateString($with_values);
 		if($columnsList == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 
 		$tables = $query->getFromString($with_values);
 		if($tables == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 
 		$where = $query->getWhereString($with_values);
@@ -976,7 +976,7 @@ class DB
 
 	/**
 	 * Return insert query string
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param boolean $with_values
 	 * @param boolean $with_priority
 	 * @return string

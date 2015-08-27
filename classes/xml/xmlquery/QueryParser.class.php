@@ -26,7 +26,7 @@ class QueryParser
 	/**
 	 * Constructor
 	 *
-	 * @param object $query XML object obtained after reading the XML Query file
+	 * @param XEObject $query XML object obtained after reading the XML Query file
 	 * @param bool $isSubQuery
 	 * @return void
 	 */
@@ -44,7 +44,7 @@ class QueryParser
 	 * Used for finding column type info (string/numeric) <br />
 	 * Obtains the table info from XE's XML schema files
 	 *
-	 * @param object $query_id
+	 * @param XEObject $query_id
 	 * @param bool $table_name
 	 * @return array
 	 */

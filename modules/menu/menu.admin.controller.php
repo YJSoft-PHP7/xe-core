@@ -61,7 +61,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Add a menu
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminInsert()
 	{
@@ -83,7 +83,7 @@ class menuAdminController extends menu
 	 *
 	 * @param string $title
 	 * @param int $siteSrl
-	 * @return Object If success, it contains menuSrl
+	 * @return XEObject If success, it contains menuSrl
 	 */
 	public function addMenu($title, $siteSrl = 0)
 	{
@@ -164,13 +164,13 @@ class menuAdminController extends menu
 	 * @param array $moduleInfos
 	 * @param int $menuSrl
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function updateLinkModule($moduleInfos, $menuSrl)
 	{
 		if(!$moduleInfos || !is_array($moduleInfos) || count($moduleInfos) == 0 || $menuSrl == 0)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 	
 		foreach($moduleInfos as $moduleInfo)
@@ -218,14 +218,14 @@ class menuAdminController extends menu
 		$oMenuAdminController = getAdminController('menu');
 		$oMenuAdminController->makeXmlFile($menuSrl);
 	
-		return new Object();
+		return new XEObject();
 	}
 	
 	
 
 	/**
 	 * Change the menu title
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminUpdate()
 	{
@@ -245,7 +245,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Delete menu process method
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminDelete()
 	{
@@ -256,7 +256,7 @@ class menuAdminController extends menu
 
 		$oAdmin = getClass('admin');
 		if($menuInfo->title == $oAdmin->getAdminMenuName())
-			return new Object(-1, 'msg_adminmenu_cannot_delete');
+			return new XEObject(-1, 'msg_adminmenu_cannot_delete');
 
 		// get menu properies with child menu
 		$phpFile = sprintf("./files/cache/menu/%s.php", $menu_srl);
@@ -287,13 +287,13 @@ class menuAdminController extends menu
 
 		if($isStartmenuInclude)
 		{
-			return new Object(-1, 'msg_cannot_delete_homemenu');
+			return new XEObject(-1, 'msg_cannot_delete_homemenu');
 		}
 
 		$output = $this->deleteMenu($menu_srl);
 		if(!$output->toBool())
 		{
-			return new Object(-1, $output->message);
+			return new XEObject(-1, $output->message);
 		}
 
 		$this->setMessage('success_deleted', 'info');
@@ -304,7 +304,7 @@ class menuAdminController extends menu
 	/**
 	 * Delete menu
 	 * Delete menu_item and xml cache files
-	 * @return Object
+	 * @return XEObject
 	 */
 	function deleteMenu($menu_srl)
 	{
@@ -375,7 +375,7 @@ class menuAdminController extends menu
 
 		$oDB->commit();
 
-		return new Object(0,'success_deleted');
+		return new XEObject(0,'success_deleted');
 	}
 
 	/**
@@ -393,13 +393,13 @@ class menuAdminController extends menu
 
 		if(!$request->parent_srl || !$request->menu_name)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$this->_setMenuSrl($request->parent_srl, $request->menu_srl);
 		if(!$request->menu_srl)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		if($request->is_shortcut == 'Y')
@@ -413,7 +413,7 @@ class menuAdminController extends menu
 
 		if($result->error < 0)
 		{
-			return new Object($result->error, $result->message);
+			return new XEObject($result->error, $result->message);
 		}
 
 		// recreate menu cache file
@@ -480,7 +480,7 @@ class menuAdminController extends menu
 			$itemInfo = $oMenuAdminModel->getMenuItemInfo($request->shortcut_target);
 			if(!$itemInfo->menu_item_srl)
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 			unset($itemInfo->normal_btn, $itemInfo->hover_btn, $itemInfo->active_btn);
 
@@ -545,7 +545,7 @@ class menuAdminController extends menu
 
 		if($request->module_id && strncasecmp('http', $request->module_id, 4) === 0)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		// when menu copy, module already copied
@@ -554,7 +554,7 @@ class menuAdminController extends menu
 			$result = $this->_insertModule($request, $args);
 			if(!$result->toBool())
 			{
-				return new Object(-1, $result->message);
+				return new XEObject(-1, $result->message);
 			}
 		}
 
@@ -565,7 +565,7 @@ class menuAdminController extends menu
 
 		if(!$request->module_id)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$args->url = $request->module_id;
@@ -630,7 +630,7 @@ class menuAdminController extends menu
 		$output = $oModuleModel->getModuleInfoByMid($request->module_id);
 		if($output->module_srl)
 		{
-			return new Object(-1, 'msg_module_name_exists');
+			return new XEObject(-1, 'msg_module_name_exists');
 		}
 
 		$oModuleController = getController('module');
@@ -649,7 +649,7 @@ class menuAdminController extends menu
 
 		if(!$request->menu_item_srl || !$request->menu_name)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		// variables set
@@ -676,7 +676,7 @@ class menuAdminController extends menu
 				$newItemInfo = $oMenuAdminModel->getMenuItemInfo($request->shortcut_target);
 				if(!$newItemInfo->menu_item_srl)
 				{
-					return new Object(-1, 'msg_invalid_request');
+					return new XEObject(-1, 'msg_invalid_request');
 				}
 
 				$args->url = $newItemInfo->url;
@@ -696,7 +696,7 @@ class menuAdminController extends menu
 				$output = $oModuleModel->getModuleInfoByMid($request->module_id);
 				if($output->module_srl)
 				{
-					return new Object(-1, 'msg_module_name_exists');
+					return new XEObject(-1, 'msg_module_name_exists');
 				}
 			}
 
@@ -704,7 +704,7 @@ class menuAdminController extends menu
 			$moduleInfo = $oModuleModel->getModuleInfoByMid($itemInfo->url);
 			if(!$moduleInfo)
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 
 			$moduleInfo->mid = $request->module_id;
@@ -807,7 +807,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Delete menu item(menu of the menu)
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminDeleteItem()
 	{
@@ -835,7 +835,7 @@ class menuAdminController extends menu
 	/**
 	 * Delete menu item ( Only include BO )
 	 * @args menu_srl, menu_item_srl, is_force
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	public function deleteItem($args)
 	{
@@ -853,7 +853,7 @@ class menuAdminController extends menu
 			if(!$output->toBool()) return $output;
 			if($output->data->count > 0)
 			{
-				return new Object(-1001, 'msg_cannot_delete_for_child');
+				return new XEObject(-1001, 'msg_cannot_delete_for_child');
 			}
 		}
 
@@ -890,7 +890,7 @@ class menuAdminController extends menu
 		$this->_checkHomeMenuInOriginMenu($originMenu, $siteInfo->mid, $isStartmenuInclude);
 		if($isStartmenuInclude)
 		{
-			return new Object(-1, 'msg_cannot_delete_homemenu');
+			return new XEObject(-1, 'msg_cannot_delete_homemenu');
 		}
 
 		$oDB = DB::getInstance();
@@ -907,7 +907,7 @@ class menuAdminController extends menu
 		$this->add('menu_title', $menu_title);
 		$this->add('menu_item_srl', $parent_srl);
 
-		return new Object(0, 'success_deleted');
+		return new XEObject(0, 'success_deleted');
 	}
 
 	private function _checkHomeMenuInOriginMenu($originMenu, $startMid, &$isStartmenuInclude)
@@ -980,7 +980,7 @@ class menuAdminController extends menu
 				}
 			}
 		}
-		return new Object(0, 'success');
+		return new XEObject(0, 'success');
 	}
 
 	private function _recursiveDeleteMenuItem(&$oDB, &$menuInfo, $node)
@@ -988,7 +988,7 @@ class menuAdminController extends menu
 		$output = $this->_deleteMenuItem($oDB, $menuInfo, $node);
 		if(!$output->toBool())
 		{
-			return new Object(-1, $output->message);
+			return new XEObject(-1, $output->message);
 		}
 
 		if(is_array($node['list']))
@@ -1011,7 +1011,7 @@ class menuAdminController extends menu
 		$source_srl = Context::get('source_srl');	// Same hierarchy's menu item serial number
 		$target_srl = Context::get('target_srl');	// Self menu item serial number
 
-		if(!$mode || !$parent_srl || !$target_srl) return new Object(-1,'msg_invalid_request');
+		if(!$mode || !$parent_srl || !$target_srl) return new XEObject(-1,'msg_invalid_request');
 
 		$oMenuAdminModel = getAdminModel('menu');
 
@@ -1019,7 +1019,7 @@ class menuAdminController extends menu
 		$originalItemInfo = $oMenuAdminModel->getMenuItemInfo($target_srl);
 		if(!$originalItemInfo->menu_item_srl)
 		{
-			return new Object(-1, 'msg_empty_menu_item');
+			return new XEObject(-1, 'msg_empty_menu_item');
 		}
 
 		// get menu properies with child menu
@@ -1280,7 +1280,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Arrange menu items
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminArrangeItem()
 	{
@@ -1348,7 +1348,7 @@ class menuAdminController extends menu
 	 * Set parent number to child
 	 * @param int $parent_srl
 	 * @param int $child_index
-	 * @param object $target
+	 * @param XEObject $target
 	 * @return void
 	 */
 	function _setParent($parent_srl, $child_index, &$target)
@@ -1371,7 +1371,7 @@ class menuAdminController extends menu
 
 	/**
 	 * move item with sub directory(recursive)
-	 * @param object $result
+	 * @param XEObject $result
 	 * @return void
 	 */
 	function _recursiveMoveMenuItem($result)
@@ -1403,7 +1403,7 @@ class menuAdminController extends menu
 		$oMenuAdminModel = getAdminModel('menu');
 
 		$target_item = $oMenuAdminModel->getMenuItemInfo($target_srl);
-		if($target_item->menu_item_srl != $target_srl) return new Object(-1,'msg_invalid_request');
+		if($target_item->menu_item_srl != $target_srl) return new XEObject(-1,'msg_invalid_request');
 		// Move the menu location(change the order menu appears)
 		if($mode == 'move')
 		{
@@ -1414,7 +1414,7 @@ class menuAdminController extends menu
 			if($source_srl)
 			{
 				$source_item = $oMenuAdminModel->getMenuItemInfo($source_srl);
-				if($source_item->menu_item_srl != $source_srl) return new Object(-1,'msg_invalid_request');
+				if($source_item->menu_item_srl != $source_srl) return new XEObject(-1,'msg_invalid_request');
 				$args->listorder = $source_item->listorder-1;
 			}
 			else
@@ -1574,7 +1574,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Get all act list for admin menu
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procMenuAdminInsertItemForAdminMenu()
 	{
@@ -2100,7 +2100,7 @@ class menuAdminController extends menu
 
 	/**
 	 * Register a menu image button
-	 * @param object $args
+	 * @param XEObject $args
 	 * @return array
 	 */
 	function _uploadButton($args)

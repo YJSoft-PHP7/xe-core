@@ -11,7 +11,7 @@ class counter extends ModuleObject
 
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -23,7 +23,7 @@ class counter extends ModuleObject
 		// add a row for today's status
 		//$oCounterController->insertTodayStatus();
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -51,7 +51,7 @@ class counter extends ModuleObject
 	/**
 	 * Module update
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -68,13 +68,13 @@ class counter extends ModuleObject
 			$oDB->addIndex('counter_log', 'idx_site_counter_log', array('site_srl', 'ipaddress'), FALSE);
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**
 	 * re-generate the cache file
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function recompileCache()
 	{

@@ -28,7 +28,7 @@ class UpdateColumnTag extends ColumnTag
 	/**
 	 * Constructor
 	 *
-	 * @param object $column
+	 * @param XEObject $column
 	 * @return void
 	 */
 	function UpdateColumnTag($column)

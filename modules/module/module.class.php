@@ -44,7 +44,7 @@ class module extends ModuleObject
 			if(!$output->toBool()) return $output;
 		}
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -416,7 +416,7 @@ class module extends ModuleObject
 			$output = $oModuleController->updateModuleConfig('module', $moduleConfig);
 		}
 		
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 	
 	function updateForUniqueSiteDomain()

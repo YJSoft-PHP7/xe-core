@@ -9,7 +9,7 @@ class file extends ModuleObject
 	/**
 	 * Implement if additional tasks are necessary when installing
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -43,7 +43,7 @@ class file extends ModuleObject
 		// 2007. 10. 19 Call a trigger to set up the file permissions before displaying
 		$oModuleController->insertTrigger('module.dispAdditionSetup', 'file', 'view', 'triggerDispFileAdditionSetup', 'before');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -86,7 +86,7 @@ class file extends ModuleObject
 	/**
 	 * Execute update
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -143,13 +143,13 @@ class file extends ModuleObject
 
 		if(!$oDB->isColumnExists('files', 'cover_image')) $oDB->addColumn('files', 'cover_image', 'char', '1', 'N');
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**
 	 * Re-generate the cache file
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function recompileCache()
 	{

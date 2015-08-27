@@ -442,7 +442,7 @@ class DBMysql extends DB
 	/**
 	 * Creates a table by using xml contents
 	 * @param string $xml_doc xml schema contents
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function createTableByXml($xml_doc)
 	{
@@ -452,7 +452,7 @@ class DBMysql extends DB
 	/**
 	 * Creates a table by using xml file path
 	 * @param string $file_name xml schema file path
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function createTableByXmlFile($file_name)
 	{
@@ -472,7 +472,7 @@ class DBMysql extends DB
 	 * opt : notnull, default, size\n
 	 * index : primary key, index, unique\n
 	 * @param string $xml_doc xml schema contents
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function _createTable($xml_doc)
 	{
@@ -558,7 +558,7 @@ class DBMysql extends DB
 
 	/**
 	 * Handles insertAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
@@ -566,7 +566,7 @@ class DBMysql extends DB
 	{
 		$query = $this->getInsertSql($queryObject, $with_values, true);
 		$query .= (__DEBUG_QUERY__ & 1 && $this->query_id) ? sprintf(' ' . $this->comment_syntax, $this->query_id) : '';
-		if(is_a($query, 'Object'))
+		if(is_a($query, 'XEObject'))
 		{
 			return;
 		}
@@ -575,14 +575,14 @@ class DBMysql extends DB
 
 	/**
 	 * Handles updateAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
 	function _executeUpdateAct($queryObject, $with_values = true)
 	{
 		$query = $this->getUpdateSql($queryObject, $with_values, true);
-		if(is_a($query, 'Object'))
+		if(is_a($query, 'XEObject'))
 		{
 			if(!$query->toBool()) return $query;
 			else return;
@@ -596,7 +596,7 @@ class DBMysql extends DB
 
 	/**
 	 * Handles deleteAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
@@ -604,7 +604,7 @@ class DBMysql extends DB
 	{
 		$query = $this->getDeleteSql($queryObject, $with_values, true);
 		$query .= (__DEBUG_QUERY__ & 1 && $this->query_id) ? sprintf(' ' . $this->comment_syntax, $this->query_id) : '';
-		if(is_a($query, 'Object'))
+		if(is_a($query, 'XEObject'))
 		{
 			return;
 		}
@@ -615,10 +615,10 @@ class DBMysql extends DB
 	 * Handle selectAct
 	 * In order to get a list of pages easily when selecting \n
 	 * it supports a method as navigation
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param resource $connection
 	 * @param boolean $with_values
-	 * @return Object
+	 * @return XEObject
 	 */
 	function _executeSelectAct($queryObject, $connection = null, $with_values = true)
 	{
@@ -631,7 +631,7 @@ class DBMysql extends DB
 		else
 		{
 			$query = $this->getSelectSql($queryObject, $with_values);
-			if(is_a($query, 'Object'))
+			if(is_a($query, 'XEObject'))
 			{
 				return;
 			}
@@ -644,7 +644,7 @@ class DBMysql extends DB
 			}
 
 			$data = $this->_fetch($result);
-			$buff = new Object ();
+			$buff = new XEObject ();
 			$buff->data = $data;
 
 			if($queryObject->usesClickCount())
@@ -672,7 +672,7 @@ class DBMysql extends DB
 	/**
 	 * Fetch a result row as an object
 	 * @param resource $result
-	 * @return object
+	 * @return XEObject
 	 */
 	function db_fetch_object(&$result)
 	{
@@ -702,15 +702,15 @@ class DBMysql extends DB
 
 	/**
 	 * If have a error, return error object
-	 * @param Object $queryObject
-	 * @return Object
+	 * @param XEObject $queryObject
+	 * @return XEObject
 	 */
 	function queryError($queryObject)
 	{
 		$limit = $queryObject->getLimit();
 		if($limit && $limit->isPageHandler())
 		{
-			$buff = new Object ();
+			$buff = new XEObject ();
 			$buff->total_count = 0;
 			$buff->total_page = 0;
 			$buff->page = 1;
@@ -726,11 +726,11 @@ class DBMysql extends DB
 
 	/**
 	 * If select query execute, return page info
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param resource $result
 	 * @param resource $connection
 	 * @param boolean $with_values
-	 * @return Object Object with page info containing
+	 * @return XEObject Object with page info containing
 	 */
 	function queryPageLimit($queryObject, $result, $connection, $with_values = true)
 	{
@@ -791,7 +791,7 @@ class DBMysql extends DB
 		if($page > $total_page)
 		{
 			// If requested page is bigger than total number of pages, return empty list
-			$buff = new Object ();
+			$buff = new XEObject ();
 			$buff->total_count = $total_count;
 			$buff->total_page = $total_page;
 			$buff->page = $page;
@@ -813,7 +813,7 @@ class DBMysql extends DB
 		$virtual_no = $total_count - ($page - 1) * $list_count;
 		$data = $this->_fetch($result, $virtual_no);
 
-		$buff = new Object ();
+		$buff = new XEObject ();
 		$buff->total_count = $total_count;
 		$buff->total_page = $total_page;
 		$buff->page = $page;
@@ -824,7 +824,7 @@ class DBMysql extends DB
 
 	/**
 	 * If select query execute, return paging sql
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param boolean $with_values
 	 * @param int $start_count
 	 * @param int $list_count
@@ -835,14 +835,14 @@ class DBMysql extends DB
 		$select = $query->getSelectString($with_values);
 		if($select == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 		$select = 'SELECT ' . $select;
 
 		$from = $query->getFromString($with_values);
 		if($from == '')
 		{
-			return new Object(-1, "Invalid query");
+			return new XEObject(-1, "Invalid query");
 		}
 		$from = ' FROM ' . $from;
 

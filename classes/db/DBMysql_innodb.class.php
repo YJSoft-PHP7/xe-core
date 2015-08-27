@@ -131,7 +131,7 @@ class DBMysql_innodb extends DBMysql
 	 * opt : notnull, default, size\n
 	 * index : primary key, index, unique\n
 	 * @param string $xml_doc xml schema contents
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function _createTable($xml_doc)
 	{

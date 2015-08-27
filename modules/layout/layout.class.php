@@ -9,14 +9,14 @@ class layout extends ModuleObject
 {
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
 		// Create a directory to be used in the layout
 		FileHandler::makeDir('./files/cache/layout');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -56,7 +56,7 @@ class layout extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -102,7 +102,7 @@ class layout extends ModuleObject
 				}
 			}
 		}
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

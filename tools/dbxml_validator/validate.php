@@ -2130,7 +2130,7 @@ try
 										array()							// arg_columns
 									);
 
-							if(is_a($resultset, 'Object') && !$resultset->toBool())
+							if(is_a($resultset, 'XEObject') && !$resultset->toBool())
 							{
 								throw new XmlSchemaError($argv[$i], -1, 'mysql SQL query generation failed');
 							}

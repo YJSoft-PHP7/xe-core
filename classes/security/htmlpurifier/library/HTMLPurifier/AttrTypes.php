@@ -61,7 +61,7 @@ class HTMLPurifier_AttrTypes
     /**
      * Retrieves a type
      * @param $type String type name
-     * @return Object AttrDef for type
+     * @return XEObject AttrDef for type
      */
     public function get($type) {
 
@@ -81,7 +81,7 @@ class HTMLPurifier_AttrTypes
     /**
      * Sets a new implementation for a type
      * @param $type String type name
-     * @param $impl Object AttrDef for type
+     * @param $impl XEObject AttrDef for type
      */
     public function set($type, $impl) {
         $this->info[$type] = $impl;

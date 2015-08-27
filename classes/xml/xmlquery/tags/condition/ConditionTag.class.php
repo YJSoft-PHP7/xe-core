@@ -56,7 +56,7 @@ class ConditionTag
 
 	/**
 	 * constructor
-	 * @param object $condition
+	 * @param XEObject $condition
 	 * @return void
 	 */
 	function ConditionTag($condition)

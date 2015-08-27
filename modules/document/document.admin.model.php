@@ -21,8 +21,8 @@ class documentAdminModel extends document
 
 	/**
 	 * Get a document list from the trash
-	 * @param object $obj
-	 * @return object
+	 * @param XEObject $obj
+	 * @return XEObject
 	 */
 	function getDocumentTrashList($obj)
 	{
@@ -77,7 +77,7 @@ class documentAdminModel extends document
 	/**
 	 * Get the doc which has trash_srl from the trash can
 	 * @param int $trash_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getDocumentTrash($trash_srl)
 	{

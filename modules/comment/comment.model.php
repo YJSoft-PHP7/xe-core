@@ -355,7 +355,7 @@ class commentModel extends comment
 	/**
 	 * Get the comment in corresponding with mid.
 	 * @todo add commentItems to cache too
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param array $columnList
 	 * @return array
 	 */
@@ -444,7 +444,7 @@ class commentModel extends comment
 	 * @param int $page
 	 * @param bool $is_admin
 	 * @param int $count
-	 * @return object
+	 * @return XEObject
 	 */
 	function getCommentList($document_srl, $page = 0, $is_admin = FALSE, $count = 0)
 	{
@@ -626,7 +626,7 @@ class commentModel extends comment
 	 * @param array $comment_list
 	 * @param array $list
 	 * @param int $depth
-	 * @param object $parent
+	 * @param XEObject $parent
 	 * @return void
 	 */
 	function _arrangeComment(&$comment_list, $list, $depth, $parent = NULL)
@@ -666,9 +666,9 @@ class commentModel extends comment
 
 	/**
 	 * Get all the comments in time decending order(for administrators)
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param array $columnList
-	 * @return object
+	 * @return XEObject
 	 */
 	function getTotalCommentList($obj, $columnList = array())
 	{
@@ -815,7 +815,7 @@ class commentModel extends comment
 
 	/**
 	 * Get all the comment count in time decending order(for administrators)
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @return int
 	 */
 	function getTotalCommentCount($obj)
@@ -926,7 +926,7 @@ class commentModel extends comment
 	/**
 	 * Return a configuration of comments for each module
 	 * @param int $module_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getCommentConfig($module_srl)
 	{
@@ -954,7 +954,7 @@ class commentModel extends comment
 		$comment_srl = Context::get('comment_srl');
 		if(!$comment_srl)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$point = Context::get('point');
@@ -968,7 +968,7 @@ class commentModel extends comment
 		$module_srl = $oComment->get('module_srl');
 		if(!$module_srl)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$oModuleModel = getModel('module');
@@ -980,7 +980,7 @@ class commentModel extends comment
 		{
 			if($comment_config->use_vote_down != 'S')
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 
 			$args->below_point = 0;
@@ -989,7 +989,7 @@ class commentModel extends comment
 		{
 			if($comment_config->use_vote_up != 'S')
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 
 			$args->more_point = 0;
@@ -1054,7 +1054,7 @@ class commentModel extends comment
 	 * @param int $page
 	 * @param bool $is_admin
 	 * @param int $count
-	 * @return object
+	 * @return XEObject
 	 */
 	function getCommentListByMemberSrl($member_srl, $columnList = array(), $page = 0, $is_admin = FALSE, $count = 0)
 	{

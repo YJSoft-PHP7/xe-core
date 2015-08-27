@@ -147,7 +147,7 @@ class XmlLangParser extends XmlParser
 
 	/**
 	 * Parsing item node, set content to '$this->code'
-	 * @param object $item
+	 * @param XEObject $item
 	 * @param string $var
 	 * @return void
 	 */
@@ -247,7 +247,7 @@ class XmlLangParser extends XmlParser
 
 	/**
 	 * Parsing value node
-	 * @param object $node
+	 * @param XEObject $node
 	 * @param string $var
 	 * @return array|bool
 	 */

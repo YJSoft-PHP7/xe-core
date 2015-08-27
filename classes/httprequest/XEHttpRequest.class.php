@@ -66,7 +66,7 @@ class XEHttpRequest
 	 * @param string $method HTTP method such as GET and POST
 	 * @param int $timeout time out value for HTTP request expiration
 	 * @param array $post_vars variables to send
-	 * @return object Returns an object containing HTTP Response body and HTTP response code
+	 * @return XEObject Returns an object containing HTTP Response body and HTTP response code
 	 */
 	function send($target = '/', $method = 'GET', $timeout = 3, $post_vars = NULL)
 	{
@@ -110,7 +110,7 @@ class XEHttpRequest
 	 * @param string $method HTTP method such as GET and POST
 	 * @param int $timeout time out value for HTTP request expiration
 	 * @param array $post_vars variables to send
-	 * @return object Returns an object containing HTTP Response body and HTTP response code
+	 * @return XEObject Returns an object containing HTTP Response body and HTTP response code
 	 */
 	function sendWithSock($target, $method, $timeout, $post_vars)
 	{
@@ -125,7 +125,7 @@ class XEHttpRequest
 		$sock = @fsockopen($scheme . $this->m_host, $this->m_port, $errno, $errstr, $timeout);
 		if(!$sock)
 		{
-			return new Object(-1, 'socket_connect_failed');
+			return new XEObject(-1, 'socket_connect_failed');
 		}
 
 		$headers = $this->m_headers + array();
@@ -200,7 +200,7 @@ class XEHttpRequest
 	 * @param string $method HTTP method such as GET and POST
 	 * @param int $timeout time out value for HTTP request expiration
 	 * @param array $post_vars variables to send
-	 * @return object Returns an object containing HTTP Response body and HTTP response code
+	 * @return XEObject Returns an object containing HTTP Response body and HTTP response code
 	 */
 	function sendWithCurl($target, $method, $timeout, $post_vars)
 	{
@@ -242,7 +242,7 @@ class XEHttpRequest
 		$body = curl_exec($ch);
 		if(curl_errno($ch))
 		{
-			return new Object(-1, 'socket_connect_failed');
+			return new XEObject(-1, 'socket_connect_failed');
 		}
 
 		$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

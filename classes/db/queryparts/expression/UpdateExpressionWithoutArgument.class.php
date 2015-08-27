@@ -13,14 +13,14 @@ class UpdateExpressionWithoutArgument extends UpdateExpression
 
 	/**
 	 * argument
-	 * @var object
+	 * @var XEObject
 	 */
 	var $argument;
 
 	/**
 	 * constructor
 	 * @param string $column_name
-	 * @param object $argument
+	 * @param XEObject $argument
 	 * @return void
 	 */
 	function UpdateExpressionWithoutArgument($column_name, $argument)

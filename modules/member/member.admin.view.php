@@ -24,7 +24,7 @@ class memberAdminView extends member
 	/**
 	 * Member module config.
 	 *
-	 * @var Object
+	 * @var XEObject
 	 */
 	var $memberConfig = NULL;
 
@@ -380,7 +380,7 @@ class memberAdminView extends member
 	/**
 	 * Get tags by the member info type 
 	 *
-	 * @param object $memberInfo
+	 * @param XEObject $memberInfo
 	 * @param boolean $isAdmin (true : admin, false : not admin)
 	 *
 	 * @return array

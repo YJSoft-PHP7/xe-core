@@ -29,7 +29,7 @@ class poll extends ModuleObject
 		$oModuleController->insertTrigger('document.deleteDocument', 'poll', 'controller', 'triggerDeleteDocumentPoll', 'after');
 		$oModuleController->insertTrigger('comment.deleteComment', 'poll', 'controller', 'triggerDeleteCommentPoll', 'after');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -71,7 +71,7 @@ class poll extends ModuleObject
 		if(!$oModuleModel->getTrigger('comment.updateComment', 'poll', 'controller', 'triggerUpdateCommentPoll', 'after')) 
 			$oModuleController->insertTrigger('comment.updateComment', 'poll', 'controller', 'triggerUpdateCommentPoll', 'after');
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

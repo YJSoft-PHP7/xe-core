@@ -21,7 +21,7 @@ class documentView extends document
 	/**
 	 * Document printing
 	 * I make it out to find the geulman;;
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function dispDocumentPrint()
 	{
@@ -36,9 +36,9 @@ class documentView extends document
 		$oDocumentModel = getModel('document');
 		// Creates an object for displaying the selected document
 		$oDocument = $oDocumentModel->getDocument($document_srl, $this->grant->manager);
-		if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
+		if(!$oDocument->isExists()) return new XEObject(-1,'msg_invalid_request');
 		// Check permissions
-		if(!$oDocument->isAccessible()) return new Object(-1,'msg_not_permitted');
+		if(!$oDocument->isAccessible()) return new XEObject(-1,'msg_not_permitted');
 		// Information setting module
 		//Context::set('module_info', $module_info);	//module_info not use in UI
 		// Browser title settings
@@ -65,11 +65,11 @@ class documentView extends document
 
 	/**
 	 * Selected by the administrator for the document management
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function dispDocumentManageDocument()
 	{
-		if(!Context::get('is_logged')) return new Object(-1,'msg_not_permitted');
+		if(!Context::get('is_logged')) return new XEObject(-1,'msg_not_permitted');
 		// Taken from a list of selected sessions
 		$flag_list = $_SESSION['document_management'];
 		if(count($flag_list))
@@ -110,7 +110,7 @@ class documentView extends document
 	 * Trigger method.
 	 * Additional information realte to document setting
 	 * @param string $obj
-	 * @return Object
+	 * @return XEObject
 	 */
 	function triggerDispDocumentAdditionSetup(&$obj)
 	{
@@ -122,7 +122,7 @@ class documentView extends document
 			// Get information of the current module
 			$current_module_info = Context::get('current_module_info');
 			$current_module_srl = $current_module_info->module_srl;
-			if(!$current_module_srl) return new Object();
+			if(!$current_module_srl) return new XEObject();
 		}
 
 		$oModuleModel = getModel('module');
@@ -141,7 +141,7 @@ class documentView extends document
 		$tpl = $oTemplate->compile($this->module_path.'tpl', 'document_module_config');
 		$obj .= $tpl;
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**

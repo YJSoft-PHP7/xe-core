@@ -12,7 +12,7 @@ class autoinstallModel extends autoinstall
 	 * Get category information
 	 *
 	 * @param int $category_srl The sequence of category to get information
-	 * @return object
+	 * @return XEObject
 	 */
 	function getCategory($category_srl)
 	{
@@ -45,7 +45,7 @@ class autoinstallModel extends autoinstall
 	 * Get installed packages information
 	 *
 	 * @param int $package_srl The sequence of package to get information
-	 * @return object
+	 * @return XEObject
 	 */
 	function getInstalledPackage($package_srl)
 	{
@@ -63,7 +63,7 @@ class autoinstallModel extends autoinstall
 	 * Get one package information
 	 *
 	 * @param int $package_srl The sequence of package to get information
-	 * @return object
+	 * @return XEObject
 	 */
 	function getPackage($package_srl)
 	{
@@ -153,7 +153,7 @@ class autoinstallModel extends autoinstall
 	/**
 	 * Set depth, children list and package count of category
 	 *
-	 * @param object $item Category information
+	 * @param XEObject $item Category information
 	 * @param int $depth Depth of category
 	 * @param array $list Category list
 	 * @param array $resultList Final result list
@@ -179,7 +179,7 @@ class autoinstallModel extends autoinstall
 	/**
 	 * Get lastest package information
 	 *
-	 * @return object Returns lastest package information. If no result returns null.
+	 * @return XEObject Returns lastest package information. If no result returns null.
 	 */
 	function getLatestPackage()
 	{
@@ -218,7 +218,7 @@ class autoinstallModel extends autoinstall
 	 * Get installed package list
 	 *
 	 * @param int $page
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getInstalledPackageList($page)
 	{

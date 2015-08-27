@@ -43,7 +43,7 @@ class IndexTag
 
 	/**
 	 * constructor
-	 * @param object $index
+	 * @param XEObject $index
 	 * @return void
 	 */
 	function IndexTag($index)

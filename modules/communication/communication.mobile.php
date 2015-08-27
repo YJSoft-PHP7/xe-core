@@ -34,7 +34,7 @@ class communicationMobile extends communicationView
 
 	/**
 	 * Display message box
-	 * @return void|Object (void : success, Object : fail)
+	 * @return void|XEObject (void : success, Object : fail)
 	 */
 	function dispCommunicationMessages()
 	{
@@ -130,7 +130,7 @@ class communicationMobile extends communicationView
 
 	/**
 	 * Display message sending
-	 * @return void|Object (void : success, Object : fail)
+	 * @return void|XEObject (void : success, Object : fail)
 	 */
 	function dispCommunicationSendMessage()
 	{

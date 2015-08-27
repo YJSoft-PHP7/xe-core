@@ -465,7 +465,7 @@ class PEAR
      *                  the error message parameter will be dropped.
      *
      * @access public
-     * @return object   a PEAR error object
+     * @return XEObject   a PEAR error object
      * @see PEAR::setErrorHandling
      * @since PHP 4.0.5
      */
@@ -549,7 +549,7 @@ class PEAR
      *                  information, this parameter is meant for that.
      *
      * @access public
-     * @return object   a PEAR error object
+     * @return XEObject   a PEAR error object
      * @see PEAR::raiseError
      */
     function &throwError($message = null, $code = null, $userinfo = null)

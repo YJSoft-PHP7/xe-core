@@ -25,11 +25,11 @@ class boardController extends board
 		// check grant
 		if($this->module_info->module != "board")
 		{
-			return new Object(-1, "msg_invalid_request");
+			return new XEObject(-1, "msg_invalid_request");
 		}
 		if(!$this->grant->write_document)
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new XEObject(-1, 'msg_not_permitted');
 		}
 		$logged_info = Context::get('logged_info');
 
@@ -104,12 +104,12 @@ class boardController extends board
 		{
 			if(!$oDocument->isGranted())
 			{
-				return new Object(-1,'msg_not_permitted');
+				return new XEObject(-1,'msg_not_permitted');
 			}
 
 			if($this->module_info->protect_content=="Y" && $oDocument->get('comment_count')>0 && $this->grant->manager==false)
 			{
-				return new Object(-1,'msg_protect_content');
+				return new XEObject(-1,'msg_protect_content');
 			}
 
 			if(!$this->grant->manager)
@@ -188,7 +188,7 @@ class boardController extends board
 		// check protect content
 		if($this->module_info->protect_content=="Y" && $oDocument->get('comment_count')>0 && $this->grant->manager==false)
 		{
-			return new Object(-1, 'msg_protect_content');
+			return new XEObject(-1, 'msg_protect_content');
 		}
 
 		// generate document module controller object
@@ -227,7 +227,7 @@ class boardController extends board
 		// check grant
 		if(!$this->grant->write_comment)
 		{
-			return new Object(-1, 'msg_not_permitted');
+			return new XEObject(-1, 'msg_not_permitted');
 		}
 		$logged_info = Context::get('logged_info');
 
@@ -256,7 +256,7 @@ class boardController extends board
 		$oDocument = $oDocumentModel->getDocument($obj->document_srl);
 		if(!$oDocument->isExists())
 		{
-			return new Object(-1,'msg_not_founded');
+			return new XEObject(-1,'msg_not_founded');
 		}
 
 		// For anonymous use, remove writer's information and notifying information
@@ -299,7 +299,7 @@ class boardController extends board
 				$parent_comment = $oCommentModel->getComment($obj->parent_srl);
 				if(!$parent_comment->comment_srl)
 				{
-					return new Object(-1, 'msg_invalid_request');
+					return new XEObject(-1, 'msg_invalid_request');
 				}
 
 				$output = $oCommentController->insertComment($obj, $bAnonymous);
@@ -313,7 +313,7 @@ class boardController extends board
 			// check the grant
 			if(!$comment->isGranted())
 			{
-				return new Object(-1,'msg_not_permitted');
+				return new XEObject(-1,'msg_not_permitted');
 			}
 
 			$obj->parent_srl = $comment->parent_srl;
@@ -403,13 +403,13 @@ class boardController extends board
 			$oComment = $oCommentModel->getComment($comment_srl);
 			if(!$oComment->isExists())
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 
 			// compare the comment password and the user input password
 			if(!$oMemberModel->isValidPassword($oComment->get('password'),$password))
 			{
-				return new Object(-1, 'msg_invalid_password');
+				return new XEObject(-1, 'msg_invalid_password');
 			}
 
 			$oComment->setGrant();
@@ -419,13 +419,13 @@ class boardController extends board
 			$oDocument = $oDocumentModel->getDocument($document_srl);
 			if(!$oDocument->isExists())
 			{
-				return new Object(-1, 'msg_invalid_request');
+				return new XEObject(-1, 'msg_invalid_request');
 			}
 
 			// compare the document password and the user input password
 			if(!$oMemberModel->isValidPassword($oDocument->get('password'),$password))
 			{
-				return new Object(-1, 'msg_invalid_password');
+				return new XEObject(-1, 'msg_invalid_password');
 			}
 
 			$oDocument->setGrant();
@@ -442,7 +442,7 @@ class boardController extends board
 
 		if(!$member_srl || !$mid)
 		{
-			return new Object();
+			return new XEObject();
 		}
 
 		$logged_info = Context::get('logged_info');
@@ -454,7 +454,7 @@ class boardController extends board
 
 		if($cur_module_info->module != 'board')
 		{
-			return new Object();
+			return new XEObject();
 		}
 
 		// get the member information
@@ -468,7 +468,7 @@ class boardController extends board
 
 		if(!$member_info->user_id)
 		{
-			return new Object();
+			return new XEObject();
 		}
 
 		//search
@@ -476,6 +476,6 @@ class boardController extends board
 		$oMemberController = getController('member');
 		$oMemberController->addMemberPopupMenu($url, 'cmd_view_own_document', '');
 
-		return new Object();
+		return new XEObject();
 	}
 }

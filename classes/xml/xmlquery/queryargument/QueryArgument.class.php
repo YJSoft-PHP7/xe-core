@@ -54,7 +54,7 @@ class QueryArgument
 
 	/**
 	 * constructor
-	 * @param object $tag tag object
+	 * @param XEObject $tag tag object
 	 * @param bool $ignore_value
 	 * @return void
 	 */

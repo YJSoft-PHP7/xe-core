@@ -58,9 +58,9 @@ class fileAdminModel extends file
 	 * 
 	 * </pre>
 	 *
-	 * @param object $obj Search options
+	 * @param XEObject $obj Search options
 	 * @param array $columnList Column list to get from DB
-	 * @return Object Object contains query result
+	 * @return XEObject Object contains query result
 	 */
 	function getFileList($obj, $columnList = array())
 	{
@@ -113,7 +113,7 @@ class fileAdminModel extends file
 	 * +---------+-------+
 	 * </pre>
 	 *
-	 * @param object $obj Search options (not used...)
+	 * @param XEObject $obj Search options (not used...)
 	 * @return array
 	 */
 	function getFilesCountByGroupValid($obj = '')
@@ -143,8 +143,8 @@ class fileAdminModel extends file
 	/**
 	 * Make search parameters from object(private)
 	 *
-	 * @param object $obj Original searach options
-	 * @param object $args Result searach options
+	 * @param XEObject $obj Original searach options
+	 * @param XEObject $args Result searach options
 	 * @return void
 	 */
 	function _makeSearchParam(&$obj, &$args)

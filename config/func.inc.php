@@ -196,9 +196,9 @@ function getClass($module_name)
  *
  * @see DB::executeQuery()
  * @param string $query_id (module name.query XML file)
- * @param object $args values of args object
+ * @param XEObject $args values of args object
  * @param string[] $arg_columns Column list
- * @return object Query result data
+ * @return XEObject Query result data
  */
 function executeQuery($query_id, $args = NULL, $arg_columns = NULL)
 {
@@ -212,9 +212,9 @@ function executeQuery($query_id, $args = NULL, $arg_columns = NULL)
  * @see DB::executeQuery()
  * @see executeQuery()
  * @param string $query_id (module name.query XML file)
- * @param object $args values of args object
+ * @param XEObject $args values of args object
  * @param string[] $arg_columns Column list
- * @return object Query result data
+ * @return XEObject Query result data
  */
 function executeQueryArray($query_id, $args = NULL, $arg_columns = NULL)
 {
@@ -872,7 +872,7 @@ function debugPrint($debug_output = NULL, $display_option = TRUE, $file = '_debu
 /**
  * @param string $type query, trigger
  * @param float $elapsed_time
- * @param object $obj
+ * @param XEObject $obj
  */
 function writeSlowlog($type, $elapsed_time, $obj)
 {
@@ -960,9 +960,9 @@ function getMicroTime()
 /**
  * Delete the second object vars from the first argument
  *
- * @param object $target_obj An original object
- * @param object $del_obj Object vars to delete from the original object
- * @return object
+ * @param XEObject $target_obj An original object
+ * @param XEObject $del_obj Object vars to delete from the original object
+ * @return XEObject
  */
 function delObjectVars($target_obj, $del_obj)
 {

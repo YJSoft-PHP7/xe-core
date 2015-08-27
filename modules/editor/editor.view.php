@@ -82,7 +82,7 @@ class editorView extends editor
 			// Get information of the current module
 			$current_module_info = Context::get('current_module_info');
 			$current_module_srl = $current_module_info->module_srl;
-			if(!$current_module_srl) return new Object();
+			if(!$current_module_srl) return new XEObject();
 		}
 		// Get editors settings
 		$oEditorModel = getModel('editor');
@@ -128,7 +128,7 @@ class editorView extends editor
 		$tpl = $oTemplate->compile($this->module_path.'tpl', 'editor_module_config');
 		$obj .= $tpl;
 
-		return new Object();
+		return new XEObject();
 	}
 
 

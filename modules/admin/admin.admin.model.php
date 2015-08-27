@@ -43,7 +43,7 @@ class adminAdminModel extends admin
 		$connection = ssh2_connect($ftp_info->ftp_host, $ftp_info->ftp_port);
 		if(!ssh2_auth_password($connection, $ftp_info->ftp_user, $ftp_info->ftp_password))
 		{
-			return new Object(-1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(-1, 'msg_ftp_invalid_auth_info');
 		}
 		$sftp = ssh2_sftp($connection);
 
@@ -112,14 +112,14 @@ class adminAdminModel extends admin
 		$connection = ftp_connect($ftp_info->ftp_host, $ftp_info->ftp_port);
 		if(!$connection)
 		{
-			return new Object(-1, sprintf(Context::getLang('msg_ftp_not_connected'), $ftp_host));
+			return new XEObject(-1, sprintf(Context::getLang('msg_ftp_not_connected'), $ftp_host));
 		}
 
 		$login_result = @ftp_login($connection, $ftp_info->ftp_user, $ftp_info->ftp_password);
 		if(!$login_result)
 		{
 			ftp_close($connection);
-			return new Object(-1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(-1, 'msg_ftp_invalid_auth_info');
 		}
 
 		// create temp file
@@ -183,7 +183,7 @@ class adminAdminModel extends admin
 
 		if(!$ftp_info->ftp_user || !$ftp_info->ftp_password)
 		{
-			return new Object(1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(1, 'msg_ftp_invalid_auth_info');
 		}
 
 		if(!$ftp_info->ftp_host)
@@ -200,7 +200,7 @@ class adminAdminModel extends admin
 		{
 			if(!function_exists('ssh2_sftp'))
 			{
-				return new Object(-1, 'disable_sftp_support');
+				return new XEObject(-1, 'disable_sftp_support');
 			}
 			return $this->getSFTPPath();
 		}
@@ -217,12 +217,12 @@ class adminAdminModel extends admin
 		$oFTP = new ftp();
 		if(!$oFTP->ftp_connect($ftp_info->ftp_host, $ftp_info->ftp_port))
 		{
-			return new Object(1, sprintf(Context::getLang('msg_ftp_not_connected'), $ftp_info->ftp_host));
+			return new XEObject(1, sprintf(Context::getLang('msg_ftp_not_connected'), $ftp_info->ftp_host));
 		}
 
 		if(!$oFTP->ftp_login($ftp_info->ftp_user, $ftp_info->ftp_password))
 		{
-			return new Object(1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(1, 'msg_ftp_invalid_auth_info');
 		}
 
 		// create temp file
@@ -275,7 +275,7 @@ class adminAdminModel extends admin
 
 	/**
 	 * Add file list to Object after sftp connect
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function getSFTPList()
 	{
@@ -287,7 +287,7 @@ class adminAdminModel extends admin
 		$connection = ssh2_connect($ftp_info->ftp_host, $ftp_info->ftp_port);
 		if(!ssh2_auth_password($connection, $ftp_info->ftp_user, $ftp_info->ftp_password))
 		{
-			return new Object(-1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(-1, 'msg_ftp_invalid_auth_info');
 		}
 
 		$sftp = ssh2_sftp($connection);
@@ -295,7 +295,7 @@ class adminAdminModel extends admin
 		$dh = @opendir($curpwd);
 		if(!$dh)
 		{
-			return new Object(-1, 'msg_ftp_invalid_path');
+			return new XEObject(-1, 'msg_ftp_invalid_path');
 		}
 		$list = array();
 		while(($file = readdir($dh)) !== FALSE)
@@ -316,7 +316,7 @@ class adminAdminModel extends admin
 
 	/**
 	 * Add file list to Object after ftp connect
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function getAdminFTPList()
 	{
@@ -328,7 +328,7 @@ class adminAdminModel extends admin
 		$ftp_info = Context::getRequestVars();
 		if(!$ftp_info->ftp_user || !$ftp_info->ftp_password)
 		{
-			return new Object(-1, 'msg_ftp_invalid_auth_info');
+			return new XEObject(-1, 'msg_ftp_invalid_auth_info');
 		}
 
 		$this->pwd = $ftp_info->ftp_root_path;
@@ -347,7 +347,7 @@ class adminAdminModel extends admin
 		{
 			if(!function_exists('ssh2_sftp'))
 			{
-				return new Object(-1, 'disable_sftp_support');
+				return new XEObject(-1, 'disable_sftp_support');
 			}
 			return $this->getSFTPList();
 		}
@@ -362,7 +362,7 @@ class adminAdminModel extends admin
 			}
 			else
 			{
-				return new Object(-1, 'msg_ftp_invalid_auth_info');
+				return new XEObject(-1, 'msg_ftp_invalid_auth_info');
 			}
 		}
 		$list = array();
@@ -383,7 +383,7 @@ class adminAdminModel extends admin
 		}
 		else
 		{
-			return new Object(-1, 'msg_ftp_no_directory');
+			return new XEObject(-1, 'msg_ftp_no_directory');
 		}
 		$this->add('list', $list);
 	}
@@ -534,7 +534,7 @@ class adminAdminModel extends admin
 	 * Return theme info
 	 * @param string $theme_name
 	 * @param array $layout_list
-	 * @return object
+	 * @return XEObject
 	 */
 	function getThemeInfo($theme_name, $layout_list = NULL)
 	{
@@ -786,7 +786,7 @@ class adminAdminModel extends admin
 	 * Get admin favorite list
 	 * @param int $siteSrl if default site, siteSrl is zero
 	 * @param bool $isGetModuleInfo
-	 * @return object
+	 * @return XEObject
 	 */
 	function getFavoriteList($siteSrl = 0, $isGetModuleInfo = FALSE)
 	{
@@ -799,7 +799,7 @@ class adminAdminModel extends admin
 		}
 		if(!$output->data)
 		{
-			return new Object();
+			return new XEObject();
 		}
 
 		if($isGetModuleInfo && is_array($output->data))
@@ -813,7 +813,7 @@ class adminAdminModel extends admin
 			}
 		}
 
-		$returnObject = new Object();
+		$returnObject = new XEObject();
 		$returnObject->add('favoriteList', $output->data);
 		return $returnObject;
 	}
@@ -822,7 +822,7 @@ class adminAdminModel extends admin
 	 * Check available insert favorite
 	 * @param int $siteSrl if default site, siteSrl is zero
 	 * @param string $module
-	 * @return object
+	 * @return XEObject
 	 */
 	function isExistsFavorite($siteSrl, $module)
 	{
@@ -835,7 +835,7 @@ class adminAdminModel extends admin
 			return $output;
 		}
 
-		$returnObject = new Object();
+		$returnObject = new XEObject();
 		if($output->data)
 		{
 			$returnObject->add('result', TRUE);

@@ -36,7 +36,7 @@ class layoutView extends layout
 	/**
 	 * Preview a layout with module.
 	 * 
-	 * @return Object
+	 * @return XEObject
 	 */
 	public function dispLayoutPreviewWithModule()
 	{
@@ -312,7 +312,7 @@ class layoutView extends layout
 
 	/**
 	 * Preview a layout
-	 * @return void|Object (void : success, Object : fail)
+	 * @return void|XEObject (void : success, Object : fail)
 	 */
 	function dispLayoutPreview()
 	{
@@ -325,11 +325,11 @@ class layoutView extends layout
 		$code = Context::get('code');
 
 		$code_css = Context::get('code_css');
-		if(!$layout_srl || !$code) return new Object(-1, 'msg_invalid_request');
+		if(!$layout_srl || !$code) return new XEObject(-1, 'msg_invalid_request');
 		// Get the layout information
 		$oLayoutModel = getModel('layout');
 		$layout_info = $oLayoutModel->getLayout($layout_srl);
-		if(!$layout_info) return new Object(-1, 'msg_invalid_request');
+		if(!$layout_info) return new XEObject(-1, 'msg_invalid_request');
 		// Separately handle the layout if its type is faceoff
 		if($layout_info && $layout_info->type == 'faceoff') $oLayoutModel->doActivateFaceOff($layout_info);
 		// Apply CSS directly

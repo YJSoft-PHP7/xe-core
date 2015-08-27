@@ -71,7 +71,7 @@ class point extends ModuleObject
 		$oPointController = getAdminController('point');
 		$oPointController->cacheActList();
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -159,7 +159,7 @@ class point extends ModuleObject
 			$oModuleController->insertTrigger('module.procModuleAdminCopyModule', 'point', 'controller', 'triggerCopyModule', 'after');
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

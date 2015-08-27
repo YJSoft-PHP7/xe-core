@@ -10,7 +10,7 @@ class integration_searchAdminView extends integration_search
 	/**
 	 * Cofiguration of integration serach module
 	 *
-	 * @var object module config
+	 * @var XEObject module config
 	 */
 	var $config = null;
 
@@ -32,7 +32,7 @@ class integration_searchAdminView extends integration_search
 	/**
 	 * Module selection and skin set
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispIntegration_searchAdminContent()
 	{
@@ -71,7 +71,7 @@ class integration_searchAdminView extends integration_search
 	/**
 	 * Skin Settings
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function dispIntegration_searchAdminSkinInfo()
 	{

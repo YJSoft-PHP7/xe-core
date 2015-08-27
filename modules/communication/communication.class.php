@@ -11,13 +11,13 @@ class communication extends ModuleObject
 
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
 		// Create a temporary file storage for one new private message notification
 		FileHandler::makeDir('./files/member_extra_info/new_message_flags');
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -51,7 +51,7 @@ class communication extends ModuleObject
 
 	/**
 	 * Update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -82,7 +82,7 @@ class communication extends ModuleObject
 			}
 		}
 		
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

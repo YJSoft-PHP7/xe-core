@@ -268,7 +268,7 @@ class moduleController extends module
 		if(isSiteID($domain))
 		{
 			$oModuleModel = getModel('module');
-			if($oModuleModel->isIDExists($domain, 0)) return new Object(-1,'msg_already_registed_vid');
+			if($oModuleModel->isIDExists($domain, 0)) return new XEObject(-1,'msg_already_registed_vid');
 		}
 		else
 		{
@@ -284,7 +284,7 @@ class moduleController extends module
 		$columnList = array('modules.site_srl');
 		$oModuleModel = getModel('module');
 		$output = $oModuleModel->getSiteInfoByDomain($args->domain, $columnList);
-		if($output) return new Object(-1,'msg_already_registed_vid');
+		if($output) return new XEObject(-1,'msg_already_registed_vid');
 
 		$output = executeQuery('module.insertSite', $args);
 		if(!$output->toBool()) return $output;
@@ -310,8 +310,8 @@ class moduleController extends module
 		if($site_info->domain != $args->domain)
 		{
 			$info = $oModuleModel->getSiteInfoByDomain($args->domain, $columnList);
-			if($info->site_srl && $info->site_srl != $args->site_srl) return new Object(-1,'msg_already_registed_domain');
-			if(isSiteID($args->domain) && $oModuleModel->isIDExists($args->domain)) return new Object(-1,'msg_already_registed_vid');
+			if($info->site_srl && $info->site_srl != $args->site_srl) return new XEObject(-1,'msg_already_registed_domain');
+			if(isSiteID($args->domain) && $oModuleModel->isIDExists($args->domain)) return new XEObject(-1,'msg_already_registed_vid');
 
 			if($args->domain && !isSiteID($args->domain))
 			{
@@ -345,7 +345,7 @@ class moduleController extends module
 		unset($args->act);
 		unset($args->page);
 		// Test mid value
-		if(!preg_match("/^[a-z][a-z0-9_]+$/i", $args->mid)) return new Object(-1, 'msg_limit_mid');
+		if(!preg_match("/^[a-z][a-z0-9_]+$/i", $args->mid)) return new XEObject(-1, 'msg_limit_mid');
 		// Test variables (separate basic vars and other vars in modules)
 		$extra_vars = clone($args);
 		unset($extra_vars->module_srl);
@@ -371,7 +371,7 @@ class moduleController extends module
 		unset($extra_vars->footer_text);
 		$args = delObjectVars($args, $extra_vars);
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -393,7 +393,7 @@ class moduleController extends module
 		// Check whether the module name already exists
 		if(!$args->site_srl) $args->site_srl = 0;
 		$oModuleModel = getModel('module');
-		if($oModuleModel->isIDExists($args->mid, $args->site_srl)) return new Object(-1, 'msg_module_name_exists');
+		if($oModuleModel->isIDExists($args->mid, $args->site_srl)) return new XEObject(-1, 'msg_module_name_exists');
 
 		// begin transaction
 		$oDB = &DB::getInstance();
@@ -525,7 +525,7 @@ class moduleController extends module
 		if(!$output->toBool() || $output->data->count)
 		{
 			$oDB->rollback();
-			return new Object(-1, 'msg_module_name_exists');
+			return new XEObject(-1, 'msg_module_name_exists');
 		}
 
 		// default value
@@ -639,7 +639,7 @@ class moduleController extends module
 	 */
 	function deleteModule($module_srl, $site_srl = 0)
 	{
-		if(!$module_srl) return new Object(-1,'msg_invalid_request');
+		if(!$module_srl) return new XEObject(-1,'msg_invalid_request');
 
 		$site_module_info = Context::get('site_module_info');
 
@@ -682,11 +682,11 @@ class moduleController extends module
 
 			if($output->isSuccess)
 			{
-				return new Object(0, 'success_deleted');
+				return new XEObject(0, 'success_deleted');
 			}
 			else
 			{
-				return new Object($output->error, $output->message);
+				return new XEObject($output->error, $output->message);
 			}
 		}
 		// only delete module
@@ -702,13 +702,13 @@ class moduleController extends module
 	 */
 	public function onlyDeleteModule($module_srl)
 	{
-		if(!$module_srl) return new Object(-1,'msg_invalid_request');
+		if(!$module_srl) return new XEObject(-1,'msg_invalid_request');
 
 		// check start module
 		$oModuleModel = getModel('module');
 		$columnList = array('sites.index_module_srl');
 		$start_module = $oModuleModel->getSiteInfo(0, $columnList);
-		if($module_srl == $start_module->index_module_srl) return new Object(-1, 'msg_cannot_delete_startmodule');
+		if($module_srl == $start_module->index_module_srl) return new XEObject(-1, 'msg_cannot_delete_startmodule');
 
 		// Call a trigger (before)
 		$trigger_obj = new stdClass();
@@ -766,7 +766,7 @@ class moduleController extends module
 	 */
 	function updateModuleSkinVars($module_srl, $skin_vars)
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -836,13 +836,13 @@ class moduleController extends module
 
 		if(!$output->toBool()) return $output;
 		// Get user id of an administrator
-		if(!is_array($arr_admins) || !count($arr_admins)) return new Object();
+		if(!is_array($arr_admins) || !count($arr_admins)) return new XEObject();
 		foreach($arr_admins as $key => $user_id)
 		{
 			if(!trim($user_id)) continue;
 			$admins[] = trim($user_id);
 		}
-		if(!count($admins)) return new Object();
+		if(!count($admins)) return new XEObject();
 
 		$oMemberModel = getModel('member');
 		$member_config = $oMemberModel->getMemberConfig();
@@ -866,7 +866,7 @@ class moduleController extends module
 			$output = executeQueryArray('module.insertSiteAdmin', $args);
 			if(!$output->toBool()) return $output;
 		}
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -945,7 +945,7 @@ class moduleController extends module
 		}
 
 		getDestroyXeVars($obj);
-		if(!$obj || !count($obj)) return new Object();
+		if(!$obj || !count($obj)) return new XEObject();
 
 		$args = new stdClass;
 		$args->module_srl = $module_srl;
@@ -979,7 +979,7 @@ class moduleController extends module
 
 		$oDB->commit;
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -1175,7 +1175,7 @@ class moduleController extends module
 		if ($ajax) Context::setRequestMethod('JSON');
 
 		$logged_info = Context::get('logged_info');
-		if($logged_info->is_admin !='Y' && !$logged_info->is_site_admin) return new Object(-1, 'msg_not_permitted');
+		if($logged_info->is_admin !='Y' && !$logged_info->is_site_admin) return new XEObject(-1, 'msg_not_permitted');
 
 		$vars = Context::gets('addfile','filter');
 		$attributeNames = Context::get('attribute_name');
@@ -1201,7 +1201,7 @@ class moduleController extends module
 		$vars->ext = $ext;
 		if($vars->filter) $filter = explode(',',$vars->filter);
 		else $filter = array('jpg','jpeg','gif','png');
-		if(!in_array($ext,$filter)) return new Object(-1, 'msg_error_occured');
+		if(!in_array($ext,$filter)) return new XEObject(-1, 'msg_error_occured');
 
 		$vars->member_srl = $logged_info->member_srl;
 
@@ -1214,10 +1214,10 @@ class moduleController extends module
 		// insert
 		else
 		{
-			if(!Context::isUploaded()) return new Object(-1, 'msg_error_occured');
+			if(!Context::isUploaded()) return new XEObject(-1, 'msg_error_occured');
 			$addfile = Context::get('addfile');
-			if(!is_uploaded_file($addfile['tmp_name'])) return new Object(-1, 'msg_error_occured');
-			if($vars->addfile['error'] != 0) return new Object(-1, 'msg_error_occured');
+			if(!is_uploaded_file($addfile['tmp_name'])) return new XEObject(-1, 'msg_error_occured');
+			if($vars->addfile['error'] != 0) return new XEObject(-1, 'msg_error_occured');
 			$output = $this->insertModuleFileBox($vars);
 		}
 
@@ -1322,10 +1322,10 @@ class moduleController extends module
 	function procModuleFileBoxDelete()
 	{
 		$logged_info = Context::get('logged_info');
-		if($logged_info->is_admin !='Y' && !$logged_info->is_site_admin) return new Object(-1, 'msg_not_permitted');
+		if($logged_info->is_admin !='Y' && !$logged_info->is_site_admin) return new XEObject(-1, 'msg_not_permitted');
 
 		$module_filebox_srl = Context::get('module_filebox_srl');
-		if(!$module_filebox_srl) return new Object(-1, 'msg_invalid_request');
+		if(!$module_filebox_srl) return new XEObject(-1, 'msg_invalid_request');
 		$vars = new stdClass();
 		$vars->module_filebox_srl = $module_filebox_srl;
 		$output = $this->deleteModuleFileBox($vars);

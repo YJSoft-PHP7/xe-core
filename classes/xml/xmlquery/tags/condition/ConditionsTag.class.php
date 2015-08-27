@@ -19,7 +19,7 @@ class ConditionsTag
 
 	/**
 	 * constructor
-	 * @param object $xml_conditions
+	 * @param XEObject $xml_conditions
 	 * @return void
 	 */
 	function ConditionsTag($xml_conditions)

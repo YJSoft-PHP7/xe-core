@@ -2,11 +2,11 @@
 /* Copyright (C) NAVER <http://www.navercorp.com> */
 
 /**
- * Every modules inherits from Object class. It includes error, message, and other variables for communicatin purpose.
+ * Every modules inherits from XEObject class. It includes error, message, and other variables for communicatin purpose.
  *
  * @author NAVER (developers@xpressengine.com)
  */
-class Object
+class XEObject
 {
 
 	/**
@@ -40,7 +40,7 @@ class Object
 	 * @param string $message Error message
 	 * @return void
 	 */
-	function Object($error = 0, $message = 'success')
+	function XEObject($error = 0, $message = 'success')
 	{
 		$this->setError($error);
 		$this->setMessage($message);
@@ -134,7 +134,7 @@ class Object
 	/**
 	 * Method to set multiple key/value pairs as an additional variables
 	 *
-	 * @param Object|array $object Either object or array containg key/value pairs to be added
+	 * @param XEObject|array $object Either object or array containg key/value pairs to be added
 	 * @return void
 	 */
 	function adds($object)
@@ -167,7 +167,7 @@ class Object
 	/**
 	 * Method to retrieve an object containing a key/value pairs
 	 *
-	 * @return Object Returns an object containing key/value pairs
+	 * @return XEObject Returns an object containing key/value pairs
 	 */
 	function gets()
 	{
@@ -193,7 +193,7 @@ class Object
 	/**
 	 * Method to retrieve an object of key/value pairs
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getObjectVars()
 	{

@@ -14,7 +14,7 @@ class InsertColumnTagWithoutArgument extends ColumnTag
 	/**
 	 * Constructor
 	 *
-	 * @param object $column
+	 * @param XEObject $column
 	 * @return void
 	 */
 	function InsertColumnTagWithoutArgument($column)

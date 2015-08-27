@@ -33,9 +33,9 @@ class trashModel extends trash
 
 	/**
 	 * Get TrashVO list
-	 * @param object $args
+	 * @param XEObject $args
 	 * @param array $columnList
-	 * @return object
+	 * @return XEObject
 	 */
 	function getTrashList($args, $columnList = array())
 	{
@@ -55,9 +55,9 @@ class trashModel extends trash
 
 	/**
 	 * Get TrashVO all list
-	 * @param object $args
+	 * @param XEObject $args
 	 * @param array $columnList
-	 * @return object
+	 * @return XEObject
 	 */
 	function getTrashAllList($args, $columnList = array())
 	{
@@ -78,7 +78,7 @@ class trashModel extends trash
 	/**
 	 * Set trash object from std object
 	 * @param TrashVO $oTrashVO
-	 * @param object $stdObject
+	 * @param XEObject $stdObject
 	 * @return void
 	 */
 	function _setTrashObject(&$oTrashVO, $stdObject)

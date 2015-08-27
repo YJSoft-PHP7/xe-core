@@ -24,7 +24,7 @@ class CacheHandler extends Handler
 	 * Get a instance of CacheHandler(for singleton)
 	 *
 	 * @param string $target type of cache (object|template)
-	 * @param object $info info. of DB
+	 * @param XEObject $info info. of DB
 	 * @param boolean $always_use_file If set true, use a file cache always
 	 * @return CacheHandler
 	 */
@@ -45,7 +45,7 @@ class CacheHandler extends Handler
 	 *
 	 * @see CacheHandler::getInstance
 	 * @param string $target type of cache (object|template)
-	 * @param object $info info. of DB
+	 * @param XEObject $info info. of DB
 	 * @param boolean $always_use_file If set true, use a file cache always
 	 * @return CacheHandler
 	 */

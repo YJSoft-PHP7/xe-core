@@ -565,7 +565,7 @@ class adminAdminView extends admin
 
 	/**
 	 * Retrun server environment to XML string
-	 * @return object
+	 * @return XEObject
 	*/
 	function dispAdminViewServerEnv()
 	{

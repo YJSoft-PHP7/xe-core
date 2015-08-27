@@ -26,7 +26,7 @@ class document extends ModuleObject
 
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -49,7 +49,7 @@ class document extends ModuleObject
 		// 2009. 01. 29 Added a trigger for additional setup
 		$oModuleController->insertTrigger('module.dispAdditionSetup', 'document', 'view', 'triggerDispDocumentAdditionSetup', 'before');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -129,7 +129,7 @@ class document extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -320,7 +320,7 @@ class document extends ModuleObject
 			$oModuleController->insertTrigger('module.procModuleAdminCopyModule', 'document', 'controller', 'triggerCopyModule', 'after');
 		}
 
-		return new Object(0,'success_updated');
+		return new XEObject(0,'success_updated');
 	}
 
 	/**

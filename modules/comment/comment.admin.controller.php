@@ -46,7 +46,7 @@ class commentAdminController extends comment
 
 	/**
 	 * Change comment status
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procCommentAdminChangeStatus()
 	{
@@ -96,7 +96,7 @@ class commentAdminController extends comment
 				$comment = $oCommentModel->getComment($comment_srl);
 				if($comment->comment_srl != $comment_srl)
 				{
-					return new Object(-1, 'msg_invalid_request');
+					return new XEObject(-1, 'msg_invalid_request');
 				}
 				$document_srl = $comment->document_srl;
 				if(!in_array($document_srl, $updated_documents_arr))
@@ -308,7 +308,7 @@ class commentAdminController extends comment
 
 	/**
 	 * comment move to trash
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function _moveCommentToTrash($commentSrlList, &$oCommentController, &$oDB, $message_content = NULL)
 	{
@@ -371,7 +371,7 @@ class commentAdminController extends comment
 
 	/**
 	 * Cancel the blacklist of abused comments reported by other users
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procCommentAdminCancelDeclare()
 	{
@@ -421,7 +421,7 @@ class commentAdminController extends comment
 
 	/**
 	 * Delete all comments of the specific module
-	 * @return object
+	 * @return XEObject
 	 */
 	function deleteModuleComments($module_srl)
 	{
@@ -448,7 +448,7 @@ class commentAdminController extends comment
 	/**
 	 * Restore comment from trash module, called by trash module
 	 * this method is passived
-	 * @return object
+	 * @return XEObject
 	 */
 	function restoreTrash($originObject)
 	{
@@ -480,7 +480,7 @@ class commentAdminController extends comment
 	/**
 	 * Empty comment in trash, called by trash module
 	 * this method is passived
-	 * @return object
+	 * @return XEObject
 	 */
 	function emptyTrash($originObject)
 	{

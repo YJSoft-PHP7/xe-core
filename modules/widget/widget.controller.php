@@ -50,8 +50,8 @@ class widgetController extends widget
 	function procWidgetGenerateCode()
 	{
 		$widget = Context::get('selected_widget');
-		if(!$widget) return new Object(-1,'msg_invalid_request');
-		if(!Context::get('skin')) return new Object(-1,Context::getLang('msg_widget_skin_is_null'));
+		if(!$widget) return new XEObject(-1,'msg_invalid_request');
+		if(!Context::get('skin')) return new XEObject(-1,Context::getLang('msg_widget_skin_is_null'));
 
 		$attribute = $this->arrangeWidgetVars($widget, Context::getRequestVars(), $vars);
 
@@ -66,9 +66,9 @@ class widgetController extends widget
 	function procWidgetGenerateCodeInPage()
 	{
 		$widget = Context::get('selected_widget');
-		if(!$widget) return new Object(-1,'msg_invalid_request');
+		if(!$widget) return new XEObject(-1,'msg_invalid_request');
 
-		if(!in_array($widget,array('widgetBox','widgetContent')) && !Context::get('skin')) return new Object(-1,Context::getLang('msg_widget_skin_is_null'));
+		if(!in_array($widget,array('widgetBox','widgetContent')) && !Context::get('skin')) return new XEObject(-1,Context::getLang('msg_widget_skin_is_null'));
 
 		$attribute = $this->arrangeWidgetVars($widget, Context::getRequestVars(), $vars);
 		// Wanted results
@@ -114,7 +114,7 @@ class widgetController extends widget
 		$page_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl, $columnList);
 		if(!$page_info->module_srl || $page_info->module != 'page') $err++;
 
-		if($err > 1) return new Object(-1,'msg_invalid_request');
+		if($err > 1) return new XEObject(-1,'msg_invalid_request');
 		// Check permissions
 		$is_logged = Context::get('is_logged');
 		$logged_info = Context::get('logged_info');
@@ -128,7 +128,7 @@ class widgetController extends widget
 				if(in_array($group_srl, $manager_group)) $is_admin = true;
 			}
 		}
-		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new Object(-1,'msg_not_permitted');
+		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new XEObject(-1,'msg_not_permitted');
 		// Enter post
 		$oDocumentModel = getModel('document');
 		$oDocumentController = getController('document');
@@ -167,13 +167,13 @@ class widgetController extends widget
 		$oDocumentAdminController = getAdminController('document');
 
 		$oDocument = $oDocumentModel->getDocument($document_srl, true);
-		if(!$oDocument->isExists()) return new Object(-1,'msg_invalid_request');
+		if(!$oDocument->isExists()) return new XEObject(-1,'msg_invalid_request');
 		$module_srl = $oDocument->get('module_srl');
 		// Destination Information Wanted page module
 		$oModuleModel = getModel('module');
 		$columnList = array('module_srl', 'module');
 		$page_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl, $columnList);
-		if(!$page_info->module_srl || $page_info->module != 'page') return new Object(-1,'msg_invalid_request');
+		if(!$page_info->module_srl || $page_info->module != 'page') return new XEObject(-1,'msg_invalid_request');
 		// Check permissions
 		$is_logged = Context::get('is_logged');
 		$logged_info = Context::get('logged_info');
@@ -187,7 +187,7 @@ class widgetController extends widget
 				if(in_array($group_srl, $manager_group)) $is_admin = true;
 			}
 		}
-		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new Object(-1,'msg_not_permitted');
+		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new XEObject(-1,'msg_not_permitted');
 
 		$output = $oDocumentAdminController->copyDocumentModule(array($oDocument->get('document_srl')), $oDocument->get('module_srl'),0);
 		if(!$output->toBool()) return $output;
@@ -208,12 +208,12 @@ class widgetController extends widget
 		$oDocumentController = getController('document');
 
 		$oDocument = $oDocumentModel->getDocument($document_srl, true);
-		if(!$oDocument->isExists()) return new Object();
+		if(!$oDocument->isExists()) return new XEObject();
 		$module_srl = $oDocument->get('module_srl');
 		// Destination Information Wanted page module
 		$oModuleModel = getModel('module');
 		$page_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
-		if(!$page_info->module_srl || $page_info->module != 'page') return new Object(-1,'msg_invalid_request');
+		if(!$page_info->module_srl || $page_info->module != 'page') return new XEObject(-1,'msg_invalid_request');
 		// Check permissions
 		$is_logged = Context::get('is_logged');
 		$logged_info = Context::get('logged_info');
@@ -227,7 +227,7 @@ class widgetController extends widget
 				if(in_array($group_srl, $manager_group)) $is_admin = true;
 			}
 		}
-		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new Object(-1,'msg_not_permitted');
+		if(!$is_admin && !$is_logged && $logged_info->is_admin != 'Y' && !$oModuleModel->isSiteAdmin($logged_info) && !(is_array($page_info->admin_id) && in_array($logged_info->user_id, $page_info->admin_id))) return new XEObject(-1,'msg_not_permitted');
 
 		$output = $oDocumentController->deleteDocument($oDocument->get('document_srl'), true);
 		if(!$output->toBool()) return $output;
@@ -247,9 +247,9 @@ class widgetController extends widget
 	 */
 	function triggerWidgetCompile(&$content)
 	{
-		if(Context::getResponseMethod()!='HTML') return new Object();
+		if(Context::getResponseMethod()!='HTML') return new XEObject();
 		$content = $this->transWidgetCode($content, $this->layout_javascript_mode);
-		return new Object();
+		return new XEObject();
 	}
 
 	/**

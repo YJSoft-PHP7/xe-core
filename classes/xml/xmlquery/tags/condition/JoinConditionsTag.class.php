@@ -13,7 +13,7 @@ class JoinConditionsTag extends ConditionsTag
 
 	/**
 	 * constructor
-	 * @param object $xml_conditions
+	 * @param XEObject $xml_conditions
 	 * @return void
 	 */
 	function JoinConditionsTag($xml_conditions)

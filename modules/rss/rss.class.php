@@ -10,7 +10,7 @@ class rss extends ModuleObject
 	/**
 	 * Additional tasks required to accomplish during the installation
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -24,7 +24,7 @@ class rss extends ModuleObject
 		// 2007. 10. 19 Call the trigger to set RSS URL before outputing
 		$oModuleController->insertTrigger('moduleHandler.proc', 'rss', 'controller', 'triggerRssUrlInsert', 'after');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -52,7 +52,7 @@ class rss extends ModuleObject
 	/**
 	 * Execute update
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -76,7 +76,7 @@ class rss extends ModuleObject
 			$oModuleController->insertTrigger('module.procModuleAdminCopyModule', 'rss', 'controller', 'triggerCopyModule', 'after');
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

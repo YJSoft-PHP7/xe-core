@@ -22,8 +22,8 @@ class menuAdminModel extends menu
 
 	/**
 	 * Get a list of all menus
-	 * @param object $obj
-	 * @return object
+	 * @param XEObject $obj
+	 * @return XEObject
 	 */
 	function getMenuList($obj)
 	{
@@ -72,7 +72,7 @@ class menuAdminModel extends menu
 	 * Get information of a new menu from the DB
 	 * Return DB and XML information of the menu
 	 * @param int $menu_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getMenu($menu_srl)
 	{
@@ -92,7 +92,7 @@ class menuAdminModel extends menu
 	 * Get information of a new menu from the DB, search condition is menu title
 	 * Return DB and XML information of the menu
 	 * @param string $title
-	 * @return object
+	 * @return XEObject
 	 */
 	function getMenuByTitle($title, $site_srl = 0)
 	{
@@ -122,7 +122,7 @@ class menuAdminModel extends menu
 	 * Get information of a new menu from the DB, search condition is menu title
 	 * Return DB and XML information of the menu(list Type)
 	 * @param string $title
-	 * @return object
+	 * @return XEObject
 	 */
 	function getMenuListByTitle($title)
 	{
@@ -142,7 +142,7 @@ class menuAdminModel extends menu
 	 * Return item information of the menu_srl
 	 * group_srls uses a seperator with comma(,) and converts to an array by explode
 	 * @param int $menu_item_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getMenuItemInfo($menu_item_srl)
 	{
@@ -249,7 +249,7 @@ class menuAdminModel extends menu
 	 * @param int $menu_srl
 	 * @param int $parent_srl
 	 * @param array $columnList
-	 * @return object
+	 * @return XEObject
 	 */
 	function getMenuItems($menu_srl, $parent_srl = null, $columnList = array())
 	{
@@ -586,7 +586,7 @@ class menuAdminModel extends menu
 		$menuItemSrl = Context::get('menu_item_srl');
 		if(!$menuItemSrl)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$menuItemInfo = $this->getMenuItemInfo($menuItemSrl);
@@ -594,7 +594,7 @@ class menuAdminModel extends menu
 		// if menu is shortcut
 		if($menuItemInfo->is_shortcut == 'Y')
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		// get module info

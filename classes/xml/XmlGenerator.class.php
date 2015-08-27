@@ -12,7 +12,7 @@ class XmlGenerator
 
 	/**
 	 * object change to xml
-	 * @param object $xml
+	 * @param XEObject $xml
 	 * @return string
 	 */
 	function obj2xml($xml)
@@ -28,7 +28,7 @@ class XmlGenerator
 
 	/**
 	 * object change to xml
-	 * @param object $node node in xml object
+	 * @param XEObject $node node in xml object
 	 * @return string
 	 */
 	function _makexml($node)

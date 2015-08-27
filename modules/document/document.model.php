@@ -31,13 +31,13 @@ class documentModel extends document
 	/**
 	 * Return document extra information from database
 	 * @param array $documentSrls
-	 * @return object
+	 * @return XEObject
 	 */
 	function getDocumentExtraVarsFromDB($documentSrls)
 	{
 		if(!is_array($documentSrls) || count($documentSrls) == 0)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$args = new stdClass();
@@ -210,11 +210,11 @@ class documentModel extends document
 
 	/**
 	 * Module_srl value, bringing the list of documents
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param bool $except_notice
 	 * @param bool $load_extra_vars
 	 * @param array $columnList
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getDocumentList($obj, $except_notice = false, $load_extra_vars=true, $columnList = array())
 	{
@@ -324,9 +324,9 @@ class documentModel extends document
 
 	/**
 	 * Module_srl value, bringing the document's gongjisa Port
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param array $columnList
-	 * @return object|void
+	 * @return XEObject|void
 	 */
 	function getNoticeList($obj, $columnList = array())
 	{
@@ -495,7 +495,7 @@ class documentModel extends document
 			$oDocument = $oDocumentModel->getDocument($document_srl, false, false, $columnList);
 			$module_srl = $oDocument->get('module_srl');
 			$member_srl = $oDocument->get('member_srl');
-			if(!$module_srl) return new Object(-1, 'msg_invalid_request');
+			if(!$module_srl) return new XEObject(-1, 'msg_invalid_request');
 
 			$oModuleModel = getModel('module');
 			$document_config = $oModuleModel->getModulePartConfig('document',$module_srl);
@@ -563,7 +563,7 @@ class documentModel extends document
 	/**
 	 * The total number of documents that are bringing
 	 * @param int $module_srl
-	 * @param object $search_obj
+	 * @param XEObject $search_obj
 	 * @return int
 	 */
 	function getDocumentCount($module_srl, $search_obj = NULL)
@@ -579,7 +579,7 @@ class documentModel extends document
 
 	/**
 	 * the total number of documents that are bringing
-	 * @param object $search_obj
+	 * @param XEObject $search_obj
 	 * @return array
 	 */
 	function getDocumentCountByGroupStatus($search_obj = NULL)
@@ -610,7 +610,7 @@ class documentModel extends document
 	/**
 	 * Import page of the document, module_srl Without throughout ..
 	 * @param documentItem $oDocument
-	 * @param object $opt
+	 * @param XEObject $opt
 	 * @return int
 	 */
 	function getDocumentPage($oDocument, $opt)
@@ -655,7 +655,7 @@ class documentModel extends document
 	 * Imported Category of information
 	 * @param int $category_srl
 	 * @param array $columnList
-	 * @return object
+	 * @return XEObject
 	 */
 	function getCategory($category_srl, $columnList = array())
 	{
@@ -831,8 +831,8 @@ class documentModel extends document
 
 	/**
 	 * Imported post monthly archive status
-	 * @param object $obj
-	 * @return object
+	 * @param XEObject $obj
+	 * @return XEObject
 	 */
 	function getMonthlyArchivedList($obj)
 	{
@@ -857,8 +857,8 @@ class documentModel extends document
 
 	/**
 	 * Bringing a month on the status of the daily posts
-	 * @param object $obj
-	 * @return object
+	 * @param XEObject $obj
+	 * @return XEObject
 	 */
 	function getDailyArchivedList($obj)
 	{
@@ -884,11 +884,11 @@ class documentModel extends document
 
 	/**
 	 * Get a list for a particular module
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function getDocumentCategories()
 	{
-		if(!Context::get('is_logged')) return new Object(-1,'msg_not_permitted');
+		if(!Context::get('is_logged')) return new XEObject(-1,'msg_not_permitted');
 		$module_srl = Context::get('module_srl');
 		$categories= $this->getCategoryList($module_srl);
 		$lang = Context::get('lang');
@@ -906,7 +906,7 @@ class documentModel extends document
 
 	/**
 	 * Wanted to set document information
-	 * @return object
+	 * @return XEObject
 	 */
 	function getDocumentConfig()
 	{
@@ -970,7 +970,7 @@ class documentModel extends document
 	/**
 	 * Certain categories of information, return the template guhanhu
 	 * Manager on the page to add information about a particular menu from the server after compiling tpl compiled a direct return html
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function getDocumentCategoryTplInfo()
 	{
@@ -981,13 +981,13 @@ class documentModel extends document
 		$module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
 		// Check permissions
 		$grant = $oModuleModel->getGrant($module_info, Context::get('logged_info'));
-		if(!$grant->manager) return new Object(-1,'msg_not_permitted');
+		if(!$grant->manager) return new XEObject(-1,'msg_not_permitted');
 
 		$category_srl = Context::get('category_srl');
 		$category_info = $this->getCategory($category_srl);
 		if(!$category_info)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return new XEObject(-1, 'msg_invalid_request');
 		}
 
 		$this->add('category_info', $category_info);
@@ -1054,7 +1054,7 @@ class documentModel extends document
 	 * @param int $document_srl
 	 * @param int $list_count
 	 * @param int $page
-	 * @return object
+	 * @return XEObject
 	 */
 	function getHistories($document_srl, $list_count, $page)
 	{
@@ -1069,7 +1069,7 @@ class documentModel extends document
 	/**
 	 * Return document's history
 	 * @param int $history_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function getHistory($history_srl)
 	{
@@ -1081,8 +1081,8 @@ class documentModel extends document
 
 	/**
 	 * Module_srl value, bringing the list of documents
-	 * @param object $obj
-	 * @return object
+	 * @param XEObject $obj
+	 * @return XEObject
 	 */
 	function getTrashList($obj)
 	{
@@ -1163,13 +1163,13 @@ class documentModel extends document
 
 	/**
 	 * vote up, vote down member list in Document View page
-	 * @return void|Object
+	 * @return void|XEObject
 	 */
 	function getDocumentVotedMemberList()
 	{
 		$args = new stdClass;
 		$document_srl = Context::get('document_srl');
-		if(!$document_srl) return new Object(-1,'msg_invalid_request');
+		if(!$document_srl) return new XEObject(-1,'msg_invalid_request');
 
 		$point = Context::get('point');
 		if($point != -1) $point = 1;
@@ -1178,18 +1178,18 @@ class documentModel extends document
 		$columnList = array('document_srl', 'module_srl');
 		$oDocument = $oDocumentModel->getDocument($document_srl, false, false, $columnList);
 		$module_srl = $oDocument->get('module_srl');
-		if(!$module_srl) return new Object(-1, 'msg_invalid_request');
+		if(!$module_srl) return new XEObject(-1, 'msg_invalid_request');
 
 		$oModuleModel = getModel('module');
 		$document_config = $oModuleModel->getModulePartConfig('document',$module_srl);
 		if($point == -1)
 		{
-			if($document_config->use_vote_down!='S') return new Object(-1, 'msg_invalid_request');
+			if($document_config->use_vote_down!='S') return new XEObject(-1, 'msg_invalid_request');
 			$args->below_point = 0;
 		}
 		else
 		{
-			if($document_config->use_vote_up!='S') return new Object(-1, 'msg_invalid_request');
+			if($document_config->use_vote_up!='S') return new XEObject(-1, 'msg_invalid_request');
 			$args->more_point = 0;
 		}
 
@@ -1225,9 +1225,9 @@ class documentModel extends document
 
 	/**
 	 * Setting sort index
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param bool $load_extra_vars
-	 * @return object
+	 * @return XEObject
 	 */
 	function _setSortIndex($obj, $load_extra_vars)
 	{
@@ -1270,8 +1270,8 @@ class documentModel extends document
 	 * 게시물 목록의 검색 옵션을 Setting함(2011.03.08 - cherryfilter)
 	 * page변수가 없는 상태에서 page 값을 알아오는 method(getDocumentPage)는 검색하지 않은 값을 return해서 검색한 값을 가져오도록 검색옵션이 추가 됨.
 	 * 검색옵션의 중복으로 인해 private method로 별도 분리
-	 * @param object $searchOpt
-	 * @param object $args
+	 * @param XEObject $searchOpt
+	 * @param XEObject $args
 	 * @param string $query_id
 	 * @param bool $use_division
 	 * @return void
@@ -1533,7 +1533,7 @@ class documentModel extends document
 	 * @param int $page
 	 * @param bool $is_admin
 	 * @param int $count
-	 * @return object
+	 * @return XEObject
 	 */
 	function getDocumentListByMemberSrl($member_srl, $columnList = array(), $page = 0, $is_admin = FALSE, $count = 0 )
 	{

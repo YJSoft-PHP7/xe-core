@@ -12,11 +12,11 @@ class importer extends ModuleObject
 {
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -30,11 +30,11 @@ class importer extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**

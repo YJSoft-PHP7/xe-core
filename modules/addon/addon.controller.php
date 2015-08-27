@@ -145,10 +145,10 @@ class addonController extends addon
 	 * Save setup
 	 *
 	 * @param string $addon Addon name
-	 * @param object $extra_vars Extra variables
+	 * @param XEObject $extra_vars Extra variables
 	 * @param int $site_srl Site srl
 	 * @param string $gtype site or global
-	 * @return Object
+	 * @return XEObject
 	 */
 	function doSetup($addon, $extra_vars, $site_srl = 0, $gtype = 'site')
 	{

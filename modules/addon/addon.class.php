@@ -11,7 +11,7 @@ class addon extends ModuleObject
 	/**
 	 * Implement if additional tasks are necessary when installing
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -27,7 +27,7 @@ class addon extends ModuleObject
 		$oAddonController->doInsert('point_level_icon');
 
 		$oAddonController->makeCacheFile(0);
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -59,7 +59,7 @@ class addon extends ModuleObject
 	/**
 	 * Execute update
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -95,13 +95,13 @@ class addon extends ModuleObject
 			}
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**
 	 * Re-generate the cache file
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function recompileCache()
 	{

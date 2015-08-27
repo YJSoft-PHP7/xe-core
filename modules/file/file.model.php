@@ -113,7 +113,7 @@ class fileModel extends file
 	 * Get file configurations
 	 *
 	 * @param int $module_srl If set this, returns specific module's configuration. Otherwise returns global configuration.
-	 * @return object Returns configuration.
+	 * @return XEObject Returns configuration.
 	 */
 	function getFileConfig($module_srl = null)
 	{
@@ -160,7 +160,7 @@ class fileModel extends file
 	 *
 	 * @param int $file_srl The sequence of file to get information
 	 * @param array $columnList The list of columns to get from DB
-	 * @return Object|object|array If error returns an instance of Object. If result set is one returns a object that contins file information. If result set is more than one returns array of object.
+	 * @return XEObject|XEObject|array If error returns an instance of Object. If result set is one returns a object that contins file information. If result set is more than one returns array of object.
 	 */
 	function getFile($file_srl, $columnList = array())
 	{
@@ -231,7 +231,7 @@ class fileModel extends file
 	/**
 	 * Return configurations of the attachement (it automatically checks if an administrator is)
 	 *
-	 * @return object Returns a file configuration of current module. If user is admin, returns PHP's max file size and allow all file types.
+	 * @return XEObject Returns a file configuration of current module. If user is admin, returns PHP's max file size and allow all file types.
 	 */
 	function getUploadConfig()
 	{
@@ -285,7 +285,7 @@ class fileModel extends file
 	 * Return file configuration of the module
 	 *
 	 * @param int $module_srl The sequence of module to get configuration
-	 * @return object
+	 * @return XEObject
 	 */
 	function getFileModuleConfig($module_srl)
 	{
@@ -295,9 +295,9 @@ class fileModel extends file
 	/**
 	 * Returns a grant of file
 	 *
-	 * @param object $file_info The file information to get grant
-	 * @param object $member_info The member information to get grant
-	 * @return object Returns a grant of file
+	 * @param XEObject $file_info The file information to get grant
+	 * @param XEObject $member_info The member information to get grant
+	 * @return XEObject Returns a grant of file
 	 */
 	function getFileGrant($file_info, $member_info)
 	{

@@ -28,7 +28,7 @@ class SelectColumnTag extends ColumnTag
 	/**
 	 * Constructor
 	 *
-	 * @param string|object $column
+	 * @param string|XEObject $column
 	 * @return void
 	 */
 	function SelectColumnTag($column)

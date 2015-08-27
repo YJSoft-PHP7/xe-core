@@ -12,14 +12,14 @@ class menu extends ModuleObject
 {
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
 		// Create a directory to use menu
 		FileHandler::makeDir('./files/cache/menu');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -58,7 +58,7 @@ class menu extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate() {
 		$oDB = &DB::getInstance();
@@ -183,7 +183,7 @@ class menu extends ModuleObject
 			$this->recompileCache();
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

@@ -382,7 +382,7 @@ class DBMysqli_innodb extends DBMysql
 
 	/**
 	 * Handles insertAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
@@ -400,7 +400,7 @@ class DBMysqli_innodb extends DBMysql
 
 	/**
 	 * Handles updateAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
@@ -418,7 +418,7 @@ class DBMysqli_innodb extends DBMysql
 
 	/**
 	 * Handles deleteAct
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param boolean $with_values
 	 * @return resource
 	 */
@@ -438,10 +438,10 @@ class DBMysqli_innodb extends DBMysql
 	 * Handle selectAct
 	 * In order to get a list of pages easily when selecting \n
 	 * it supports a method as navigation
-	 * @param Object $queryObject
+	 * @param XEObject $queryObject
 	 * @param resource $connection
 	 * @param boolean $with_values
-	 * @return Object
+	 * @return XEObject
 	 */
 	function _executeSelectAct($queryObject, $connection = null, $with_values = false)
 	{
@@ -470,7 +470,7 @@ class DBMysqli_innodb extends DBMysql
 	/**
 	 * Fetch a result row as an object
 	 * @param resource $result
-	 * @return object
+	 * @return XEObject
 	 */
 	function db_fetch_object(&$result)
 	{
@@ -494,7 +494,7 @@ class DBMysqli_innodb extends DBMysql
 	 * opt : notnull, default, size\n
 	 * index : primary key, index, unique\n
 	 * @param string $xml_doc xml schema contents
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function _createTable($xml_doc)
 	{

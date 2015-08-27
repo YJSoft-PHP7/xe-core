@@ -26,7 +26,7 @@ class integration_searchModel extends module
 	 * @param integer $page page of page navigation
 	 * @param integer $list_count list count of page navigation
 	 *
-	 * @return Object output document list
+	 * @return XEObject output document list
 	 */
 	function getDocuments($target, $module_srls_list, $search_target, $search_keyword, $page=1, $list_count = 20)
 	{
@@ -69,7 +69,7 @@ class integration_searchModel extends module
 	 * @param integer $page page of page navigation
 	 * @param integer $list_count list count of page navigation
 	 *
-	 * @return Object output comment list
+	 * @return XEObject output comment list
 	 */
 	function getComments($target, $module_srls_list, $search_keyword, $page=1, $list_count = 20)
 	{
@@ -113,12 +113,12 @@ class integration_searchModel extends module
 	 * @param integer $page page of page navigation
 	 * @param integer $list_count list count of page navigation
 	 *
-	 * @return Object output trackback list
+	 * @return XEObject output trackback list
 	 */
 	function getTrackbacks($target, $module_srls_list, $search_target = "title", $search_keyword, $page=1, $list_count = 20)
 	{
 		$oTrackbackModel = getAdminModel('trackback');
-		if(!$oTrackbackModel) return new Object();
+		if(!$oTrackbackModel) return new XEObject();
 		$args = new stdClass();
 
 		if(is_array($module_srls_list)) $module_srls = implode(',',$module_srls_list);
@@ -148,7 +148,7 @@ class integration_searchModel extends module
 	 * @param integer $list_count list count of page navigation
 	 * @param string $direct_download Y or N
 	 *
-	 * @return Object output file list
+	 * @return XEObject output file list
 	 */
 	function _getFiles($target, $module_srls_list, $search_keyword, $page, $list_count, $direct_download = 'Y')
 	{
@@ -254,7 +254,7 @@ class integration_searchModel extends module
 	 * @param integer $page page of page navigation
 	 * @param integer $list_count list count of page navigation
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getImages($target, $module_srls_list, $search_keyword, $page=1, $list_count = 20)
 	{
@@ -270,7 +270,7 @@ class integration_searchModel extends module
 	 * @param integer $page page of page navigation
 	 * @param integer $list_count list count of page navigation
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function getFiles($target, $module_srls_list, $search_keyword, $page=1, $list_count = 20)
 	{

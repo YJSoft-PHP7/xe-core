@@ -35,7 +35,7 @@ class XmlGenerater
 	 * Request data to server and returns result
 	 *
 	 * @param array $params Request data
-	 * @return object
+	 * @return XEObject
 	 */
 	function getXmlDoc(&$params)
 	{
@@ -83,7 +83,7 @@ class autoinstall extends ModuleObject
 	/**
 	 * For additional tasks required when installing
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -139,7 +139,7 @@ class autoinstall extends ModuleObject
 	/**
 	 * Execute update
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -179,12 +179,12 @@ class autoinstall extends ModuleObject
 			$oDB->addColumn('autoinstall_packages', 'have_instance', 'char', '1', 'N', TRUE);
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**
 	 * Re-generate the cache file
-	 * @return Object
+	 * @return XEObject
 	 */
 	function recompileCache()
 	{

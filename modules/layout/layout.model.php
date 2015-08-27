@@ -254,7 +254,7 @@ class layoutModel extends layout
 	 * Get one of layout information created in the DB
 	 * Return DB info + XML info of the generated layout
 	 * @param int $layout_srl
-	 * @return object info of layout
+	 * @return XEObject info of layout
 	 */
 	function getLayout($layout_srl)
 	{
@@ -434,9 +434,9 @@ class layoutModel extends layout
 	 * Get information by reading conf/info.xml in the module
 	 * It uses caching to reduce time for xml parsing ..
 	 * @param string $layout
-	 * @param object $info
+	 * @param XEObject $info
 	 * @param string $layoutType (P : PC, M : Mobile)
-	 * @return object info of layout
+	 * @return XEObject info of layout
 	 */
 	function getLayoutInfo($layout, $info = null, $layout_type = "P")
 	{
@@ -1010,7 +1010,7 @@ class layoutModel extends layout
 	/**
 	 * faceOff related services for the operation run out
 	 * @deprecated
-	 * @param object $layout_info
+	 * @param XEObject $layout_info
 	 * @return void
 	 */
 	function doActivateFaceOff(&$layout_info)

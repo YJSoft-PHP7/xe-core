@@ -16,7 +16,7 @@ class comment extends ModuleObject
 
 	/**
 	 * Implemented if additional tasks are required when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
@@ -36,7 +36,7 @@ class comment extends ModuleObject
 		// 2008. 02. 22 add comment setting when a new module added
 		$oModuleController->insertTrigger('module.dispAdditionSetup', 'comment', 'view', 'triggerDispCommentAdditionSetup', 'before');
 
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -106,7 +106,7 @@ class comment extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
@@ -175,7 +175,7 @@ class comment extends ModuleObject
 			$oModuleController->insertTrigger('module.procModuleAdminCopyModule', 'comment', 'controller', 'triggerCopyModule', 'after');
 		}
 
-		return new Object(0, 'success_updated');
+		return new XEObject(0, 'success_updated');
 	}
 
 	/**

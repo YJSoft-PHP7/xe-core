@@ -9,7 +9,7 @@ class memberAdminModel extends member
 {
 	/**
 	 * info of member
-	 * @var object
+	 * @var XEObject
 	 */
 	var $member_info = NULL;
 
@@ -36,7 +36,7 @@ class memberAdminModel extends member
 	/**
 	 * Get a member list
 	 * 
-	 * @return object|array (object : when member count is 1, array : when member count is more than 1)
+	 * @return XEObject|array (object : when member count is 1, array : when member count is more than 1)
 	 */
 	function getMemberList()
 	{

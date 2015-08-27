@@ -21,7 +21,7 @@ class InsertColumnTag extends ColumnTag
 	/**
 	 * Constructor
 	 *
-	 * @param object $column
+	 * @param XEObject $column
 	 *
 	 * @return void
 	 */

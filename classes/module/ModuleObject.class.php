@@ -6,7 +6,7 @@
  * @author NAVER (developers@xpressengine.com)
  * base class of ModuleHandler
  * */
-class ModuleObject extends Object
+class ModuleObject extends XEObject
 {
 
 	var $mid = NULL; ///< string to represent run-time instance of Module (XE Module)
@@ -141,8 +141,8 @@ class ModuleObject extends Object
 
 	/**
 	 * sett to set module information
-	 * @param object $module_info object containing module information
-	 * @param object $xml_info object containing module description
+	 * @param XEObject $module_info object containing module information
+	 * @param XEObject $xml_info object containing module description
 	 * @return void
 	 * */
 	function setModuleInfo($module_info, $xml_info)
@@ -462,7 +462,7 @@ class ModuleObject extends Object
 		$addon_file = $oAddonController->getCacheFilePath(Mobile::isFromMobilePhone() ? "mobile" : "pc");
 		if(FileHandler::exists($addon_file)) include($addon_file);
 
-		if(is_a($output, 'Object') || is_subclass_of($output, 'Object'))
+		if(is_a($output, 'XEObject') || is_subclass_of($output, 'XEObject'))
 		{
 			$this->setError($output->getError());
 			$this->setMessage($output->getMessage());

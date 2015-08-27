@@ -385,9 +385,9 @@ class ttimport
 
 	/**
 	 * Insert textyle guest book
-	 * @param object $val
+	 * @param XEObject $val
 	 * @param int $module_srl
-	 * @param object $member_info
+	 * @param XEObject $member_info
 	 * @param int $textyle_guestbook_srl
 	 * @param int $parent_srl
 	 * @param int $author_xml_id
@@ -617,13 +617,13 @@ class ttimport
 
 	/**
 	 * Comment
-	 * @param object $val
+	 * @param XEObject $val
 	 * @param int $module_srl
 	 * @param int $document_srl
-	 * @param object $member_info
+	 * @param XEObject $member_info
 	 * @param int $parent_srl
 	 * @param int $author_xml_id
-	 * @return bool|int|object
+	 * @return bool|int|XEObject
 	 */
 	function insertComment($val, $module_srl, $document_srl, $member_info, $parent_srl = 0, $author_xml_id)
 	{
@@ -702,7 +702,7 @@ class ttimport
 
 	/**
 	 * List category
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @param array $category
 	 * @param int $idx
 	 * @param int $parent

@@ -37,7 +37,7 @@ class LimitTag
 
 	/**
 	 * constructor
-	 * @param object $index
+	 * @param XEObject $index
 	 * @return void
 	 */
 	function LimitTag($index)

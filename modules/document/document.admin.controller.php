@@ -49,7 +49,7 @@ class documentAdminController extends document
 	 * @param array $document_srl_list
 	 * @param int $module_srl
 	 * @param int $category_srl
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moveDocumentModule($document_srl_list, $module_srl, $category_srl)
 	{
@@ -211,7 +211,7 @@ class documentAdminController extends document
 				$oCacheHandler->delete($cache_key_item);
 			}
 		}
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -219,7 +219,7 @@ class documentAdminController extends document
 	 * @param array $document_srl_list
 	 * @param int $module_srl
 	 * @param int $category_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function copyDocumentModule($document_srl_list, $module_srl, $category_srl)
 	{
@@ -429,7 +429,7 @@ class documentAdminController extends document
 
 		$oDB->commit();
 
-		$output = new Object();
+		$output = new XEObject();
 		$output->add('copied_srls', $copied_srls);
 		return $output;
 	}
@@ -437,7 +437,7 @@ class documentAdminController extends document
 	/**
 	 * Delete all documents of the module
 	 * @param int $module_srl
-	 * @return object
+	 * @return XEObject
 	 */
 	function deleteModuleDocument($module_srl)
 	{
@@ -473,7 +473,7 @@ class documentAdminController extends document
 
 	/**
 	 * Save the default settings of the document module
-	 * @return object
+	 * @return XEObject
 	 */
 	function procDocumentAdminInsertConfig()
 	{
@@ -489,7 +489,7 @@ class documentAdminController extends document
 
 	/**
 	 * Revoke declaration of the blacklisted posts
-	 * @return object
+	 * @return XEObject
 	 */
 	function procDocumentAdminCancelDeclare()
 	{
@@ -539,7 +539,7 @@ class documentAdminController extends document
 
 	/**
 	 * Add or modify extra variables of the module
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminInsertExtraVar()
 	{
@@ -554,7 +554,7 @@ class documentAdminController extends document
 		$eid = Context::get('eid');
 		$obj = new stdClass();
 
-		if(!$module_srl || !$name || !$eid) return new Object(-1,'msg_invalid_request');
+		if(!$module_srl || !$name || !$eid) return new XEObject(-1,'msg_invalid_request');
 		// set the max value if idx is not specified
 		if(!$var_idx)
 		{
@@ -570,7 +570,7 @@ class documentAdminController extends document
 		$output = executeQuery('document.isExistsExtraKey', $obj);
 		if(!$output->toBool() || $output->data->count)
 		{
-			return new Object(-1, 'msg_extra_name_exists');
+			return new XEObject(-1, 'msg_extra_name_exists');
 		}
 
 		// insert or update
@@ -586,13 +586,13 @@ class documentAdminController extends document
 
 	/**
 	 * Delete extra variables of the module
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminDeleteExtraVar()
 	{
 		$module_srl = Context::get('module_srl');
 		$var_idx = Context::get('var_idx');
-		if(!$module_srl || !$var_idx) return new Object(-1,'msg_invalid_request');
+		if(!$module_srl || !$var_idx) return new XEObject(-1,'msg_invalid_request');
 
 		$oDocumentController = getController('document');
 		$output = $oDocumentController->deleteDocumentExtraKeys($module_srl, $var_idx);
@@ -603,7 +603,7 @@ class documentAdminController extends document
 
 	/**
 	 * Control the order of extra variables
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminMoveExtraVar()
 	{
@@ -611,26 +611,26 @@ class documentAdminController extends document
 		$module_srl = Context::get('module_srl');
 		$var_idx = Context::get('var_idx');
 
-		if(!$type || !$module_srl || !$var_idx) return new Object(-1,'msg_invalid_request');
+		if(!$type || !$module_srl || !$var_idx) return new XEObject(-1,'msg_invalid_request');
 
 		$oModuleModel = getModel('module');
 		$module_info = $oModuleModel->getModuleInfoByModuleSrl($module_srl);
-		if(!$module_info->module_srl) return new Object(-1,'msg_invalid_request');
+		if(!$module_info->module_srl) return new XEObject(-1,'msg_invalid_request');
 
 		$oDocumentModel = getModel('document');
 		$extra_keys = $oDocumentModel->getExtraKeys($module_srl);
-		if(!$extra_keys[$var_idx]) return new Object(-1,'msg_invalid_request');
+		if(!$extra_keys[$var_idx]) return new XEObject(-1,'msg_invalid_request');
 
 		if($type == 'up') $new_idx = $var_idx-1;
 		else $new_idx = $var_idx+1;
-		if($new_idx<1) return new Object(-1,'msg_invalid_request');
+		if($new_idx<1) return new XEObject(-1,'msg_invalid_request');
 
 		$args = new stdClass();
 		$args->module_srl = $module_srl;
 		$args->var_idx = $new_idx;
 		$output = executeQuery('document.getDocumentExtraKeys', $args);
 		if (!$output->toBool()) return $output;
-		if (!$output->data) return new Object(-1, 'msg_invalid_request');
+		if (!$output->data) return new XEObject(-1, 'msg_invalid_request');
 		unset($args);
 
 		// update immediately if there is no idx to change
@@ -683,7 +683,7 @@ class documentAdminController extends document
 
 	/**
 	 * Insert alias for document
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminInsertAlias()
 	{
@@ -707,7 +707,7 @@ class documentAdminController extends document
 
 	/**
 	 * Delete alias for document
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminDeleteAlias()
 	{
@@ -797,7 +797,7 @@ class documentAdminController extends document
 
 	/**
 	 * Restor document from trash
-	 * @return void|object
+	 * @return void|XEObject
 	 */
 	function procDocumentAdminRestoreTrash()
 	{
@@ -861,8 +861,8 @@ class documentAdminController extends document
 	/**
 	 * Restore document from trash module, called by trash module
 	 * This method is passived
-	 * @param object|array $originObject
-	 * @return object
+	 * @param XEObject|array $originObject
+	 * @return XEObject
 	 */
 	function restoreTrash($originObject)
 	{
@@ -876,7 +876,7 @@ class documentAdminController extends document
 
 		//DB restore
 		$output = $oDocumentController->insertDocument($originObject, false, true, false);
-		if(!$output->toBool()) return new Object(-1, $output->getMessage());
+		if(!$output->toBool()) return new XEObject(-1, $output->getMessage());
 
 		//FILE restore
 		$oDocument = $oDocumentModel->getDocument($originObject->document_srl);
@@ -902,14 +902,14 @@ class documentAdminController extends document
 
 		// commit
 		$oDB->commit();
-		return new Object(0, 'success');
+		return new XEObject(0, 'success');
 	}
 
 	/**
 	 * Empty document in trash, called by trash module
 	 * This method is passived
 	 * @param string $originObject string is serialized object
-	 * @return object
+	 * @return XEObject
 	 */
 	function emptyTrash($originObject)
 	{

@@ -37,49 +37,49 @@ class QueryTag
 
 	/**
 	 * Query stdClass object
-	 * @var object
+	 * @var XEObject
 	 */
 	var $query;
 
 	/**
 	 * Columns in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $columns;
 
 	/**
 	 * Tables in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $tables;
 
 	/**
 	 * Subquery in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $subquery;
 
 	/**
 	 * Conditions in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $conditions;
 
 	/**
 	 * Groups in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $groups;
 
 	/**
 	 * Navigation in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $navigation;
 
 	/**
 	 * Arguments in xml tags
-	 * @var object
+	 * @var XEObject
 	 */
 	var $arguments;
 
@@ -115,7 +115,7 @@ class QueryTag
 
 	/**
 	 * constructor
-	 * @param object $query
+	 * @param XEObject $query
 	 * @param bool $isSubQuery
 	 * @return void
 	 */

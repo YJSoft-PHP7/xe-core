@@ -14,11 +14,11 @@ class trash extends ModuleObject
 {
 	/**
 	 * Implement if additional tasks are necessary when installing
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -35,14 +35,14 @@ class trash extends ModuleObject
 
 	/**
 	 * Execute update
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
 		//$oDB = &DB::getInstance();
 		//$oModuleModel = getModel('module');
 
-		return new Object(0,'success_updated');
+		return new XEObject(0,'success_updated');
 	}
 }
 /* End of file trash.class.php */

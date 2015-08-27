@@ -14,11 +14,11 @@ class adminlogging extends ModuleObject
 
 	/**
 	 * Install adminlogging module
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleInstall()
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**
@@ -32,11 +32,11 @@ class adminlogging extends ModuleObject
 
 	/**
 	 * Update module
-	 * @return Object
+	 * @return XEObject
 	 */
 	function moduleUpdate()
 	{
-		return new Object();
+		return new XEObject();
 	}
 
 	/**

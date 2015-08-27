@@ -10,7 +10,7 @@ class memberAPI extends member
 	/**
 	 * Content List
 	 *
-	 * @param Object $oModule
+	 * @param XEObject $oModule
 	 *
 	 * @return void
 	 */

@@ -128,7 +128,7 @@ class HTMLPurifier_Printer
 
     /**
      * Retrieves the class of an object without prefixes, as well as metadata
-     * @param $obj Object to determine class of
+     * @param $obj XEObject to determine class of
      * @param $prefix Further prefix to remove
      */
     protected function getClass($obj, $sec_prefix = '') {

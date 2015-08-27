@@ -26,7 +26,7 @@ class XMLDisplayHandler
 
 	/**
 	 * produce XML code given variable object\n
-	 * @param object $obj 
+	 * @param XEObject $obj
 	 * @return string
 	 */
 	function _makeXmlDoc($obj)

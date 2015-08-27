@@ -8,12 +8,12 @@
  * @class EditorHandler
  * @author NAVER (developers@xpressengine.com)
  */
-class EditorHandler extends Object
+class EditorHandler extends XEObject
 {
 
 	/**
 	 * set the xml and other information of the component
-	 * @param object $info editor information
+	 * @param XEObject $info editor information
 	 * @return void
 	 * */
 	function setInfo($info)

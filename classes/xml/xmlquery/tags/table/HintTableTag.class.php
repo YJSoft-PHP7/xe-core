@@ -21,7 +21,7 @@ class HintTableTag extends TableTag
 	/**
 	 * constructor
 	 * Initialises Table Tag properties
-	 * @param object $table XML <table> tag
+	 * @param XEObject $table XML <table> tag
 	 * @param array $index
 	 * @return void
 	 */

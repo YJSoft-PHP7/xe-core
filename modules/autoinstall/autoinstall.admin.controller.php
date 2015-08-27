@@ -35,7 +35,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Clean download file
 	 *
-	 * @param object $obj
+	 * @param XEObject $obj
 	 * @return void
 	 */
 	function _cleanDownloaded($obj)
@@ -46,7 +46,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Update easy install information
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function procAutoinstallAdminUpdateinfo()
 	{
@@ -174,7 +174,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Install package
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function procAutoinstallAdminPackageinstall()
 	{
@@ -240,7 +240,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Update package informations using recieved data from server
 	 *
-	 * @param object $xmlDoc Recieved data
+	 * @param XEObject $xmlDoc Recieved data
 	 * @return void
 	 */
 	function updatePackages(&$xmlDoc)
@@ -281,7 +281,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Update category using recived data from server.
 	 *
-	 * @param object $xmlDoc Recived data
+	 * @param XEObject $xmlDoc Recived data
 	 * @return void
 	 */
 	function updateCategory(&$xmlDoc)
@@ -307,7 +307,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Uninstall package
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function procAutoinstallAdminUninstallPackage()
 	{
@@ -332,7 +332,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Uninstall package by package serial number
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function uninstallPackageByPackageSrl($package_srl)
 	{
@@ -345,7 +345,7 @@ class autoinstallAdminController extends autoinstall
 	/**
 	 * Uninstall package by package path
 	 *
-	 * @return Object
+	 * @return XEObject
 	 */
 	function uninstallPackageByPath($path)
 	{
@@ -400,7 +400,7 @@ class autoinstallAdminController extends autoinstall
 
 		$this->setMessage('success_deleted', 'update');
 
-		return new Object();
+		return new XEObject();
 	}
 
 }

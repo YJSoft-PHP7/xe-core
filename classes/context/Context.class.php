@@ -40,19 +40,19 @@ class Context
 
 	/**
 	 * Conatins request parameters and environment variables
-	 * @var object
+	 * @var XEObject
 	 */
 	public $context = NULL;
 
 	/**
 	 * DB info
-	 * @var object
+	 * @var XEObject
 	 */
 	public $db_info = NULL;
 
 	/**
 	 * FTP info
-	 * @var object
+	 * @var XEObject
 	 */
 	public $ftp_info = NULL;
 
@@ -70,7 +70,7 @@ class Context
 
 	/**
 	 * obejct oFrontEndFileHandler()
-	 * @var object
+	 * @var XEObject
 	 */
 	public $oFrontEndFileHandler;
 
@@ -112,7 +112,7 @@ class Context
 
 	/**
 	 * contains language-specific data
-	 * @var object
+	 * @var XEObject
 	 */
 	public $lang = NULL;
 
@@ -157,7 +157,7 @@ class Context
 	/**
 	 * returns static context object (Singleton). It's to use Context without declaration of an object
 	 *
-	 * @return object Instance
+	 * @return XEObject Instance
 	 */
 	function &getInstance()
 	{
@@ -528,7 +528,7 @@ class Context
 	/**
 	 * Set DB information
 	 *
-	 * @param object $db_info DB information
+	 * @param XEObject $db_info DB information
 	 * @return void
 	 */
 	function setDBInfo($db_info)
@@ -540,7 +540,7 @@ class Context
 	/**
 	 * Get DB information
 	 *
-	 * @return object DB information
+	 * @return XEObject DB information
 	 */
 	function getDBInfo()
 	{
@@ -551,7 +551,7 @@ class Context
 	/**
 	 * Return ssl status
 	 *
-	 * @return object SSL status (Optional - none|always|optional)
+	 * @return XEObject SSL status (Optional - none|always|optional)
 	 */
 	function getSslStatus()
 	{
@@ -710,7 +710,7 @@ class Context
 	/**
 	 * Get FTP information
 	 *
-	 * @return object FTP information
+	 * @return XEObject FTP information
 	 */
 	function getFTPInfo()
 	{
@@ -994,8 +994,8 @@ class Context
 	/**
 	 * Convert strings of variables in $source_object into UTF-8
 	 *
-	 * @param object $source_obj Conatins strings to convert
-	 * @return object converted object
+	 * @param XEObject $source_obj Conatins strings to convert
+	 * @return XEObject converted object
 	 */
 	function convertEncoding($source_obj)
 	{
@@ -1063,7 +1063,7 @@ class Context
 	 * @param string $key
 	 * @param string $charset character set
 	 * @see arrayConvWalkCallback will replaced array_walk_recursive in >=PHP5
-	 * @return object converted object
+	 * @return XEObject converted object
 	 */
 	function doConvertEncoding(&$val, $key = null, $charset)
 	{
@@ -1301,7 +1301,7 @@ class Context
 	 * Filter xml variables
 	 *
 	 * @param string $key Variable key
-	 * @param object $val Variable value
+	 * @param XEObject $val Variable value
 	 * @return mixed filtered value
 	 */
 	function _filterXmlVars($key, $val)
@@ -1895,7 +1895,7 @@ class Context
 	/**
 	 * Get one more vars in object vars with given arguments(key1, key2, key3,...)
 	 *
-	 * @return object
+	 * @return XEObject
 	 */
 	function gets()
 	{
@@ -1918,7 +1918,7 @@ class Context
 	/**
 	 * Return all data
 	 *
-	 * @return object All data
+	 * @return XEObject All data
 	 */
 	function getAll()
 	{
@@ -1929,7 +1929,7 @@ class Context
 	/**
 	 * Return values from the GET/POST/XMLRPC
 	 *
-	 * @return Object Request variables.
+	 * @return XEObject Request variables.
 	 */
 	function getRequestVars()
 	{

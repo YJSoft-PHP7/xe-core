@@ -206,7 +206,7 @@ class FirePHP {
   /**
    * A stack of objects used to detect recursion during object encoding
    * 
-   * @var object
+   * @var XEObject
    */
   protected $objectStack = array();
   
@@ -955,7 +955,7 @@ class FirePHP {
    * 
    * Uses PHP's jeson_encode() if available
    * 
-   * @param object $Object The object to be encoded
+   * @param XEObject $Object The object to be encoded
    * @return string The JSON string
    */
   public function jsonEncode($Object, $skipObjectEncode=false)
@@ -1004,7 +1004,7 @@ class FirePHP {
    * Encodes an object including members with
    * protected and private visibility
    * 
-   * @param Object $Object The object to be encoded
+   * @param XEObject $Object The object to be encoded
    * @param int $Depth The current traversal depth
    * @return array All members of the object
    */

@@ -13,14 +13,14 @@ class UpdateExpression extends Expression
 
 	/**
 	 * argument
-	 * @var object
+	 * @var XEObject
 	 */
 	var $argument;
 
 	/**
 	 * constructor
 	 * @param string $column_name
-	 * @param object $argument
+	 * @param XEObject $argument
 	 * @return void
 	 */
 	function UpdateExpression($column_name, $argument)

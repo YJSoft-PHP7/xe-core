@@ -46,7 +46,7 @@ class ExtraVar
 	/**
 	 * Register a key of extra variable
 	 * 
-	 * @param object[] $extra_keys Array of extra variable. A value of array is object that contains module_srl, idx, name, default, desc, is_required, search, value, eid.
+	 * @param XEObject[] $extra_keys Array of extra variable. A value of array is object that contains module_srl, idx, name, default, desc, is_required, search, value, eid.
 	 * @return void
 	 */
 	function setExtraVarKeys($extra_keys)

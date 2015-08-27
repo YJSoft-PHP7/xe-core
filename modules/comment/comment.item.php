@@ -9,7 +9,7 @@
  * @package /modules/comment
  * @version 0.1
  */
-class commentItem extends Object
+class commentItem extends XEObject
 {
 
 	/**
@@ -468,7 +468,7 @@ class commentItem extends Object
 
 	/**
 	 * Return author's profile image
-	 * @return object
+	 * @return XEObject
 	 */
 	function getProfileImage()
 	{

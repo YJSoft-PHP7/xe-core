@@ -29,8 +29,8 @@ class TablesTag
 
 	/**
 	 * constructor
-	 * @param object $xml_tables_tag
-	 * @param object $xml_index_hints_tag
+	 * @param XEObject $xml_tables_tag
+	 * @param XEObject $xml_index_hints_tag
 	 * @return void
 	 */
 	function TablesTag($xml_tables_tag, $xml_index_hints_tag = NULL)
